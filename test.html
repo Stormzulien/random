@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Test</title>
+    <!-- Clearly working -->
+    <style id="selection"></style>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      #gibberish {
+        font-size: clamp(1.5rem, 12vw, 14rem);
+        max-width: 80%;
+        /* word-break: break-all; */
+        text-align: center;
+      }
+
+      #overlay {
+        background-color: black;
+        position: fixed;
+        inset: 0;
+        z-index: 99;
+        pointer-events: none;
+        opacity: 0%;
+        transition: opacity 0.18s;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        #overlay {
+          opacity: 30%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Overlay to make dark mode users hopefully not go blind -->
+    <div id="overlay"></div>
+
+    <h1 id="gibberish" title="Inspiring text to enlighten you"></h1>
+    <p>Test page</p>
+
+    <script>
+      "use strict";
+
+      // randomise colours
+
+      const [color, background] = opposite();
+
+      Object.assign(document.body.style, {
+        color, background
+      });
+
+      selection();
+
+      // gibberish
+
+      gibberish();
+
+      function selection() {
+        const [color, background] = opposite();
+
+        document.head.querySelector("style#selection")
+          .innerText = `
+            ::selection {
+              color: ${color};
+              background-color: ${background}
+            }
+          `;
+      }
+
+      function opposite() {
+        const max = 16777215; // #FFFFFF
+        
+        function hex(num) {
+          return "#" + Math.round(num).toString(16).padStart(6, "0");
+        }
+
+        const ran = Math.round(Math.random() * max);
+
+        const colours = [
+          hex(ran),
+          hex(max - ran)
+        ];
+
+        return colours;
+      }
+
+      function gibberish() {
+        const gibberish = document.querySelector("#gibberish");
+        const chars = "aabcdeefghiijklmnoopqrstuuvwxyz'".split("");
+        const length = { min: 8, max: 12 };
+
+        let str = "";
+
+        for (let i = 0; i < Math.round(Math.random() * (length.max - length.min) + length.min); i++) {
+          str += chars[Math.floor(Math.random() * chars.length)];
+        }
+
+        gibberish.textContent = str;
+      }
+    </script>
+  </body>
+</html>
