@@ -13,7 +13,8 @@
       let result = "";
 
       rules.forEach(r => {
-        result += `  "\\\\B\\\\?post:\\\\s*${r}\\\\b": "#${r}#",\n`;
+        if (r !== "set-14")
+          result += `  "\\\\B\\\\?post:\\\\s*${r}\\\\b": "#${r}#",\n`;
       });
 
       document.body.innerHTML = `<pre style="background-color: white; padding: 10px;">${result}</pre>`;
