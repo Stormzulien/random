@@ -5,6 +5,7 @@
     <style>
       body {
         user-select: none;
+        font-family: Arial;
       }
 
       pre#main {
@@ -17,10 +18,28 @@
         cursor: pointer;
         user-select: none;
       }
+
+      #template {
+        font-family: monospace;
+        width: 500px;
+      }
+
+      #replace-char {
+        font-family: monospace;
+        width: 20px;
+      }
+
+      .padding {
+        margin-inline: 10px;
+      }
     </style>
   </head>
   <body>
+    <input type="text" placeholder="template" id="template">
+    <span>Replace char:</span>
+    <input type="text" maxlength="2" id="replace-char">
     <button onclick="forReplies()">For replies</button>
+    <span class="padding">|</span>
     <button onclick="normal()">Normal</button>
 
     <pre id="main"></pre>
@@ -30,31 +49,42 @@
 
       import main from "./main.json" with { type: "json" };
       
-      const excluded = ["set-14"];
+      const excluded = ["set-14", "test"];
+      const defaultRule = "origin";
+
+      const templateElem = document.querySelector("#template");
+      const replaceCharElem = document.querySelector("#replace-char");
+      templateElem.value = "(?<=\\\\s|^)\\\\?post:%r(?:\\\\s.*)?$";
+      replaceCharElem.value = "%r";
 
       const rules = Object.keys(main);
       const rules2 = "#" + rules.join("#\n#") + "#";
 
-      const sorted = rules.sort((a, b) => { // make dashes come first
-        const countA = (a.match(/-/g) || []).length;
-        const countB = (b.match(/-/g) || []).length;
-        return countB - countA;
-      });
+      function forReplies() {
+        const sorted = rules.sort((a, b) => { // make dashes come first
+          const countA = (a.match(/-/g) || []).length;
+          const countB = (b.match(/-/g) || []).length;
+          return countB - countA;
+        });
 
-      let result = "";
+        let result = "";
 
-      sorted.forEach(r => {
-        if (!excluded.includes(r))
-          result += `  "\\\\B\\\\?post:\\\\s*${r}(?:\\\\s.*)?$": "#${r}#",\n`;
-      });
+        sorted.forEach(r => {
+          if (!excluded.includes(r))
+            // result += `  "(?<=\\\\s|^)\\\\?post:\\\\s*${r}(?:\\\\s.*)?$": "#${r}#",\n`;
+            result += `  "${templateElem.value.replaceAll(replaceCharElem.value, r)}": "#${r}#",\n`;
+        });
 
-      function forReplies() { document.querySelector("pre#main").innerHTML = result; }
+        result += `  "${templateElem.value.replaceAll(replaceCharElem.value, "default")}": "#${defaultRule}#",\n`;
+        document.querySelector("pre#main").innerHTML = result;
+      }
       function normal() { document.querySelector("pre#main").innerHTML = rules2; }
 
       window.forReplies = forReplies;
       window.normal = normal;
 
       forReplies();
+
     </script>
   </body>
 </html>

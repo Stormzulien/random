@@ -86074,7 +86074,12 @@
 		"Do you see anything?\n\n#babel-img#",
 		"I have been captured by an extraterrestrial that calls itself a “#pokémon#”. Send help now.",
 		"Please don't touch that!! I need that bottle of #lots-of-chrs# to survive!!! ...",
-		"[_v:#verb#]I love #_v#ing so much. I #_v#ed for #number# #time-normal# yesterday. If #_v#ing didn't exist, I'd be dead by now..."
+		"[_v:#verb#]I love #_v#ing so much. I #_v#ed for #number# #time-normal# yesterday. If #_v#ing didn't exist, I'd be dead by now...",
+		"here's my source code: https://www.bluebotsdonequick.com/bots/stormbot.bsky.social",
+		"May you be cringe and free!!",
+		"Random location:\n\nhttps://www.google.com/maps/@#digit##digit#.#digit##digit##digit##digit##digit##digit##digit#,#digit##digit#.#digit##digit##digit##digit##digit##digit##digit#,#digit##digit##digit##digit##digit#m",
+		"hi",
+		"There's no point in #verb-ing# #noun.s##punc-end#"
 	],
 	"colours": [
 		"alizarin",
@@ -127762,7 +127767,7 @@
 		"Dette er en offentlig kunngjøring: Du har kanskje lagt merke til at \\[者土口壁火行蛋墙壁行㝏者鸡爬土鸡拉卜月卜爬沙土卜山]. Hvis dette ikke er løst innen 23:00, vil gjennomsnittstemperaturen i lokaluniverset raskt stige til 500 exakelvin. Dø nå eller senere. Takk for at du deltar som entropimaskiner. Adjø."
 	],
 	"help": [
-		"I can help you. What would you like assistance with?\n\n\\Reply with “?help: nothing” to be helped with nothing.\nReply with “?help: something” to be helped with something.\nReply with “?help: AAAAAaaaAAaA!! AAAAAAA aaaAA!!! I'm scared...” to be helped with “AAAAAaaaAAaA!! AAAAAAA aaaAA!!! I'm scared...”."
+		"I can help you. What would you like assistance with?\n\nReply with “?help: nothing” to be helped with nothing,\n“?help: something” to be helped with something,\nor “?help: AAAAaaAAaA!! AAAAAAA aaaAA!!! I'm scared...” to be helped with “AAAAaaAAaA!! AAAAAAA aaaAA!!! I'm scared...”."
 	],
 	"date-reply": [
 		"The date is {date l, dS} of {date F, Y}.\nThe time is {date g:i A} or {date H:i:s e}.",
