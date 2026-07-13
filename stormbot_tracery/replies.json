@@ -75,7 +75,6 @@
   "(?<=\\s|^)\\?post:other-location(?:\\s.*)?$": "#other-location#",
   "(?<=\\s|^)\\?post:set-0(?:\\s.*)?$": "#set-0#",
   "(?<=\\s|^)\\?post:did-didnt(?:\\s.*)?$": "#did-didnt#",
-  "(?<=\\s|^)\\?post:very-rare(?:\\s.*)?$": "#very-rare#",
   "(?<=\\s|^)\\?post:food-percent(?:\\s.*)?$": "#food-percent#",
   "(?<=\\s|^)\\?post:set-4(?:\\s.*)?$": "#set-4#",
   "(?<=\\s|^)\\?post:set-5(?:\\s.*)?$": "#set-5#",
