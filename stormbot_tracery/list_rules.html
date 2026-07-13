@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List rules</title>
+  </head>
+  <body>
+    <script type="module">
+      "use strict";
+
+      import main from "./main.json" with { type: "json" };
+
+      const rules = Object.keys(main);
+      let result = "";
+
+      rules.forEach(r => {
+        result += `  "\\\\B\\\\?post:\\\\s*${r}\\\\b": "#${r}#",\n`;
+      });
+
+      document.body.innerHTML = `<pre style="background-color: white; padding: 10px;">${result}</pre>`;
+      document.body.style.backgroundColor = "white";
+    </script>
+  </body>
+</html>
