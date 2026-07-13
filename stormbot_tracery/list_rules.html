@@ -45,7 +45,7 @@
 
       sorted.forEach(r => {
         if (!excluded.includes(r))
-          result += `  "^\\\\?post:\\\\s*${r}(?:\\\\s.*)?$": "#${r}#",\n`;
+          result += `  "\\\\B\\\\?post:\\\\s*${r}(?:\\\\s.*)?$": "#${r}#",\n`;
       });
 
       function forReplies() { document.querySelector("pre#main").innerHTML = result; }
