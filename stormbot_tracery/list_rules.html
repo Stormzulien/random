@@ -2,23 +2,59 @@
 <html>
   <head>
     <title>List rules</title>
+    <style>
+      body {
+        user-select: none;
+      }
+
+      pre#main {
+        background-color: lightgrey;
+        padding: 10px;
+        user-select: text;
+      }
+
+      button {
+        cursor: pointer;
+        user-select: none;
+      }
+    </style>
   </head>
   <body>
+    <button onclick="forReplies()">For replies</button>
+    <button onclick="normal()">Normal</button>
+
+    <pre id="main"></pre>
+
     <script type="module">
       "use strict";
 
       import main from "./main.json" with { type: "json" };
+      
+      const excluded = ["set-14"];
 
       const rules = Object.keys(main);
-      let result = "";
+      const rules2 = "#" + rules.join("#\n#") + "#";
 
-      rules.forEach(r => {
-        if (r !== "set-14")
-          result += `  "\\\\B\\\\?post:\\\\s*${r}\\\\b": "#${r}#",\n`;
+      const sorted = rules.sort((a, b) => { // make dashes come first
+        const countA = (a.match(/-/g) || []).length;
+        const countB = (b.match(/-/g) || []).length;
+        return countB - countA;
       });
 
-      document.body.innerHTML = `<pre style="background-color: white; padding: 10px;">${result}</pre>`;
-      document.body.style.backgroundColor = "white";
+      let result = "";
+
+      sorted.forEach(r => {
+        if (!excluded.includes(r))
+          result += `  "^\\\\?post:\\\\s*${r}(?:\\\\s.*)?$": "#${r}#",\n`;
+      });
+
+      function forReplies() { document.querySelector("pre#main").innerHTML = result; }
+      function normal() { document.querySelector("pre#main").innerHTML = rules2; }
+
+      window.forReplies = forReplies;
+      window.normal = normal;
+
+      forReplies();
     </script>
   </body>
 </html>
