@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>List rules</title>
+    <!-- 14/07/2026 -->
     <style>
       body {
         user-select: none;
@@ -51,16 +52,25 @@
   <body>
     <button onclick="formatted()" title="Formatted like: #rule#">Formatted</button>
     <button onclick="plain()" title="Basic list">Plain</button>
+
     <span class="padding">|</span>
+
     <button onclick="asArray()" title="JSON Array">Array</button>
+
     <span class="padding"></span>
+
     <input type="checkbox" id="newlines" checked="true" title="Seperate items with \n"> <label for="newlines" title="Seperate items with \n">Newlines</label>
+
     <span class="padding"></span>
+
     <span>Whitespace:</span>
     <input type="text" id="whitespace">
     <button onclick="document.querySelector('#whitespace').value = '\t'" title="Set whitespace as \t (Tab character)">Tab</button>
+
     <span class="padding">|</span>
+    
     <input type="text" placeholder="template" id="template">
+
     <span>Replace char:</span>
     <input type="text" maxlength="2" id="replace-char">
     <button onclick="forReplies()">For replies</button>
@@ -73,28 +83,28 @@
       "use strict";
 
       import main from "./main.json" with { type: "json" };
-      
+
+      const defaultRule = "origin";      
       const excluded = ["set-14", "test", "very-rare"];
-      const defaultRule = "origin";
-
-      const mainElem = document.querySelector("pre#main");
-
-      const templateElem = document.querySelector("#template");
-      const replaceCharElem = document.querySelector("#replace-char");
-      const whitespace = document.querySelector("#whitespace");
-      templateElem.value = "(?<=\\\\s|^)\\\\?post:%r(?:\\\\s.*)?$";
-      replaceCharElem.value = "%r";
-      whitespace.value = "  ";
-
-      const newlines = document.querySelector("#newlines");
 
       const rules = Object.keys(main);
 
+      const mainElem = document.querySelector("pre#main");
+      const templateElem = document.querySelector("#template");
+        templateElem.value = "(?<=\\\\s|^)\\\\?post:%r(?:\\\\s.*)?$";
+      const replaceCharElem = document.querySelector("#replace-char");
+        replaceCharElem.value = "%r";
+      const whitespace = document.querySelector("#whitespace");
+        whitespace.value = "  ";
+      const newlines = document.querySelector("#newlines");
+
       const sorted = rules.sort((a, b) => { // make dashes come first
-        const countA = (a.match(/-/g) || []).length;
-        const countB = (b.match(/-/g) || []).length;
-        return countB - countA;
+        const cA = (a.match(/-/g) || []).length;
+        const cB = (b.match(/-/g) || []).length;
+        return cB - cA;
       });
+
+      // button functions
 
       function forReplies() {
         let result = "";
@@ -121,10 +131,9 @@
         }
       }
 
-      window.forReplies = forReplies;
-      window.formatted = formatted;
-      window.plain = plain;
-      window.asArray = asArray;
+      // script[type=module]
+
+      Object.assign(window, { forReplies, formatted, plain, asArray });
 
     </script>
   </body>
