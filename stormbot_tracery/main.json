@@ -1,7 +1,7 @@
 {
 	"test": [],
 	"origin": [
-		"#hierarchical#",
+		"#procedural#",
 		"#short#",
 		"#short#",
 		"#short#",
@@ -10,7 +10,7 @@
 		"#rare#",
 		"#rare#",
 		"Today is {date F jS, Y}#punc-end# #emoji#\n\nHave a nice day #emoticon#",
-		"\\[#adjective#] people who eat \\[#food.s#] are \\[#adjective#]",
+		"\\[ #adjective# \\] people who eat \\[ #food.s# \\] are \\[ #adjective# \\]",
 		"The #adjective# #adjective# #animal# #verb-ed# over #determiner# #adjective#, #adjective# #animal##punc-end#",
 		"#person# is #verb-ing# at #place-people-name.capitalize# #hashtag#",
 		"Due to #adjective# circumstances, #person# may (or may not) #adverb# consume #person##punc-end# #hashtag#",
@@ -43305,7 +43305,6 @@
 		"#standard-reply#",
 		"#standard-reply#",
 		"I have no clue what I'm talking about!",
-		"#rare#",
 		"We're sorry to hear that you're unsatisfied with this Tweet. Please email us at #email-address# and mention “#adjective#-#word#” so we can get this issue resolved.",
 		"We're happy to hear that you're satisfied with this Tweet. Please email us at #email-address# and mention “#adjective#-#word#” to get #currency-symbol##large-number#."
 	],
@@ -109814,8 +109813,8 @@
 		"In terms of attractiveness, I'm definitely a 哇̴̷̶̷̴̸̸̸̴̴̸̷̶̶̵̴̷̷̶̷̸̸̸̵̷̷̸̸̷̷̵̵̵̴̵̵̵̴̷̢̢̨̢̧̧̨̢̢̡̨̢̡̧̧̨̡̡̨̡̨̢̢̨̧̢̧̧̛̛̛̛̛̛͔͈͓͖̯͎̪̲̦̗̞̞̺̲̘̣̺̮͉̬̼͈̼̫̻̪̦̭͎͕̣̱͔͎͙̱̘͇̪͙͉̪̞̖̲̹̗̩̱͙̩̰̪̲̹̤̝̥̝̟̝͔̲̪̘̱͙̟̪̣͉̺͈͔͎̖̮̫̯̼̙̬͇̤͚̘͎͓̬̤̻̦͖̱͕͙̝̳̺̪͇̩̯̝̞͇͔͚͖̩̦̺͈͎̞͈̜͙̮̦͈͖̤̦̬͍̳̠͈̳͙͖͉͍͍̖͈̪̱̜̫̳̞̼͉͕̘͔͚͙̳̼̜̯̲̜̜͍͉͈̯̱̖̖̤͍̩̹̭͚̹̭̘͕̗̻̤̳̖̼̹̳̜̤̹͔͙̙̙͚̠̫͎͉̦͔̟͇͔̼̻̝̬̲̬̱̱͈̘̰̯̖̜̭̣̻̤̫͓̭̘͖̱͚̙̞̪̝͚͓̬͍̰͍̗̳͎̳̣͎̥̲̪͈̞͎̘͚̜̳͔̥̗̹̪̼̖̥͚̯͓̰̟̦̟̰͙̟̮̳̞̣͓͔̼͕͉̪̰͚̺̞̥̦̺̟̪̘̪̘͕̹̤̟͚͕̠͈̯̖̥̦͓̦̘̣̩͈̩͊͂͋̍́̿̿̏́̂́̋̿̓̔̑̿͗̑̌͋͛̓͆̇̀̽̎̍̍̐̌̈́͊̇͋͌̑͛̐̽̈͋̽͛̿̆͊͋̔̐̀̿̂̈́͌̽͐́̍̋͌̑͒̃̐̏̇̈́̌̀̈́́͗̿̄̐̀̅́͛̀͋̃͗̓͊́̎̏̈́̾̓̓͌̈́̒̾͊͋̌̋͗́̊́̒̿͂̾͂͆͑͛͐̈́̇̉̈̈̿̇͐̏͊͊̀͂̾̈́͊́̒̎͗̐͛̓̇̅̿̑͂͛͑̓͛̂̈̋͂̐̈́̉͛̾̊̅̔̓̆̃̓̄͋̍̇͋͛̈̃̍̽̈́̒̀͐͑̇͂̔̏̓̉̃̀̈́̅̑̈́́͌̆͗́̉̊̀̀͗̾͊̑̽̒͑̃̾͆̓̌̽͋̈͂̋̂̽̃͐́̋́͆͋̃̌̇̇̔̎̄̊́̓̈́̋̊̄̍̀̋̎̉̅̓͂͆̆͋̋͊̉̆̈̾̈́͆̊͗̅̎͒̅͐̂̃̆̾̽̔̈͆̄̈̐̐̕̕͘̚̕̕̕̕̚͘̕̕͘͘̚͜͜͜͜͜͝͝͝͝͝͠͝͝͝͠͝͝͝͠͝͝ͅͅͅͅͅͅͅͅͅͅͅͅͅͅͅͅͅ.̴̧̛̞̼̥͌̈́͂̈̿́̒̓̔̕͜͠ .",
 		"There are Maid-Cathedrals everywhere for those with the eyes to see them.",
 		"I'm a TRUE Black American woman and I've been Black all my life.",
-		"Do you see something?\n\n🟪🟪🟪🟪🟪🟪⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛\n🟪🟪🟪🟪🟪🟪🟪🟪🟪⬛⬛⬛⬛⬛⬛⬛\n🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪⬛⬛⬛⬛\n🟦🟦🟦🟦🟪🟪🟪🟪🟪🟪🟪🟪🟪⬛⬛⬛\n🟦🟦🟦🟦🟦🟦🟦🟪🟪🟪🟪🟪🟪🟪🟪⬛\n🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟪🟪🟪🟪🟪🟪\n🟦🟨🟨🟨🟨🟨🟦🟦🟦🟦🟦🟦🟪🟪🟪🟪\n🟨🟨🟨🟨🟨🟨🟨🟦🟦🟦🟦🟦🟦🟦🟪🟪\n🟨🟧🟧🟧🟧🟨🟨🟨🟦🟦🟦🟦🟦🟦🟦🟪\n🟧🟥🟥🟥🟥🟧🟨🟨🟦🟦🟦🟩🟩🟨🟦🟦\n🟥🟩🟩🟩🟥🟥🟧🟩🟩🟩🟩🟩🟩🟩🟩🟩\n🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜🟩🟩🟩⬜🟩\n🟩🟩⬜🟩🟨🟩🟨🟩🟩⬜🟩🟩🟩🟨🟩🟩\n🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜🟩🟩🟩🟨\n🟨🟩🟩⬜🟩🟩⬜🟩🟩🟩🟩🟩🟩⬜🟩🟩\n🟩🟩🟩🟩🟩🟩🟩🟨🟩🟩🟨🟩🟩🟩🟩🟩",
-		"Do you see anything?\n\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2#⬛#b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2#⬛#b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2#⬛#b-tile-2#⬛#b-tile-2#⬛⬛#b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#",
+		"Do you see something?\n\n🟪🟪🟪🟪🟪🟪🟪🟪⬛⬛⬛⬛⬛⬛\n🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪🟪⬛⬛⬛\n🟦🟦🟦🟪🟪🟪🟪🟪🟪🟪🟪🟪⬛⬛\n🟦🟦🟦🟦🟦🟦🟪🟪🟪🟪🟪🟪🟪🟪\n🟦🟦🟦🟦🟦🟦🟦🟦🟦🟪🟪🟪🟪🟪\n🟨🟨🟨🟨🟨🟦🟦🟦🟦🟦🟦🟪🟪🟪\n🟨🟨🟨🟨🟨🟨🟦🟦🟦🟦🟦🟦🟦🟪\n🟧🟧🟧🟧🟨🟨🟨🟦🟦🟦🟦🟦🟦🟦\n🟥🟥🟥🟥🟧🟨🟨🟦🟦🟦🟩🟩🟨🟦\n🟩🟩🟩🟥🟥🟧🟩🟩🟩🟩🟩🟩🟩🟩\n🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜🟩🟩🟩⬜\n🟩⬜🟩🟨🟩🟨🟩🟩⬜🟩🟩🟩🟨🟩\n🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜🟩🟩🟩\n🟩🟩⬜🟩🟩⬜🟩🟩🟩🟩🟩🟩⬜🟩",
+		"Do you see anything?\n\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2#⬛#b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2#⬛#b-tile-2#⬛#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2#⬛#b-tile-2#⬛#b-tile-2#⬛#b-tile-2#⬛⬛#b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#\n#b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2##b-tile-2#",
 		"Colorless green ideas sleep furiously...",
 		"#rare#",
 		"#rare#"
@@ -112132,6 +112131,7 @@
 		"Cloud Engineer",
 		"Coach Driver",
 		"Coastguard",
+		"Cock",
 		"Commissioning Editor",
 		"Community Arts Worker",
 		"Community Learning and Development Officer",
@@ -112183,6 +112183,7 @@
 		"Dietitian",
 		"Digital Content Editor",
 		"Digital Marketer",
+		"Dildo",
 		"Diplomatic Service Operational Officer",
 		"Dispensing Optician",
 		"Distillery Worker",
@@ -127684,7 +127685,7 @@
 		"€"
 	],
 	"babel-img": [
-		"#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n"
+		"#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#\n#b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile##b-tile#"
 	],
 	"b-tile": [
 		"🟥",

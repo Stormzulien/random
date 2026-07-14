@@ -14,7 +14,7 @@
         user-select: text;
       }
 
-      button {
+      button, input[type=checkbox] {
         cursor: pointer;
         user-select: none;
       }
@@ -32,15 +32,40 @@
       .padding {
         margin-inline: 10px;
       }
+
+      #copy-btn {
+        position: fixed;
+        right: 10px;
+      }
+
+      label {
+        color: #383838;
+        font-size: 0.9em;
+      }
+
+      #whitespace {
+        width: 40px;
+      }
     </style>
   </head>
   <body>
+    <button onclick="formatted()" title="Formatted like: #rule#">Formatted</button>
+    <button onclick="plain()" title="Basic list">Plain</button>
+    <span class="padding">|</span>
+    <button onclick="asArray()" title="JSON Array">Array</button>
+    <span class="padding"></span>
+    <input type="checkbox" id="newlines" checked="true" title="Seperate items with \n"> <label for="newlines" title="Seperate items with \n">Newlines</label>
+    <span class="padding"></span>
+    <span>Whitespace:</span>
+    <input type="text" id="whitespace">
+    <button onclick="document.querySelector('#whitespace').value = '	'" title="Set whitespace as U+0009">Tab</button>
+    <span class="padding">|</span>
     <input type="text" placeholder="template" id="template">
     <span>Replace char:</span>
     <input type="text" maxlength="2" id="replace-char">
     <button onclick="forReplies()">For replies</button>
-    <span class="padding">|</span>
-    <button onclick="normal()">Normal</button>
+
+    <button id="copy-btn" onclick="navigator.clipboard.writeText(document.querySelector('pre#main').innerText)">Copy</button>
 
     <pre id="main"></pre>
 
@@ -52,38 +77,54 @@
       const excluded = ["set-14", "test", "very-rare"];
       const defaultRule = "origin";
 
+      const mainElem = document.querySelector("pre#main");
+
       const templateElem = document.querySelector("#template");
       const replaceCharElem = document.querySelector("#replace-char");
+      const whitespace = document.querySelector("#whitespace");
       templateElem.value = "(?<=\\\\s|^)\\\\?post:%r(?:\\\\s.*)?$";
       replaceCharElem.value = "%r";
+      whitespace.value = "  ";
+
+      const newlines = document.querySelector("#newlines");
 
       const rules = Object.keys(main);
-      const rules2 = "#" + rules.join("#\n#") + "#";
+
+      const sorted = rules.sort((a, b) => { // make dashes come first
+        const countA = (a.match(/-/g) || []).length;
+        const countB = (b.match(/-/g) || []).length;
+        return countB - countA;
+      });
 
       function forReplies() {
-        const sorted = rules.sort((a, b) => { // make dashes come first
-          const countA = (a.match(/-/g) || []).length;
-          const countB = (b.match(/-/g) || []).length;
-          return countB - countA;
-        });
-
         let result = "";
 
         sorted.forEach(r => {
           if (!excluded.includes(r))
             // result += `  "(?<=\\\\s|^)\\\\?post:\\\\s*${r}(?:\\\\s.*)?$": "#${r}#",\n`;
-            result += `  "${templateElem.value.replaceAll(replaceCharElem.value, r)}": "#${r}#",\n`;
+            result += `"${templateElem.value.replaceAll(replaceCharElem.value, r)}": "#${r}#",\n`;
         });
 
         result += `  "${templateElem.value.replaceAll(replaceCharElem.value, "default")}": "#${defaultRule}#",\n`;
-        document.querySelector("pre#main").innerHTML = result;
+        mainElem.innerHTML = result;
       }
-      function normal() { document.querySelector("pre#main").innerHTML = rules2; }
+
+      function formatted() { mainElem.innerHTML = ("#" + rules.join("#\n#") + "#"); }
+
+      function plain() { mainElem.innerHTML = rules.join("\n"); }
+
+      function asArray() {
+        if (newlines.checked) {
+          mainElem.innerHTML = (`[\n${whitespace.value}"` + rules.join(`",\n${whitespace.value}"`) + '"\n]');
+        } else {
+          mainElem.innerHTML = (`["` + rules.join(`","`) + '"]');
+        }
+      }
 
       window.forReplies = forReplies;
-      window.normal = normal;
-
-      forReplies();
+      window.formatted = formatted;
+      window.plain = plain;
+      window.asArray = asArray;
 
     </script>
   </body>
