@@ -84,7 +84,7 @@
 
       import main from "./main.json" with { type: "json" };
 
-      const defaultRule = "origin";
+      // const defaultRule = "origin";
       const excluded = ["set-14", "very-rare", "term-filter"];
 
       const rules = Object.keys(main)
@@ -115,7 +115,7 @@
             result += `"${templateElem.value.replaceAll(replaceCharElem.value, r)}": "#${r}#",\n`;
         });
 
-        result += `  "${templateElem.value.replaceAll(replaceCharElem.value, "default")}": "#${defaultRule}#",\n`;
+        // result += `  "${templateElem.value.replaceAll(replaceCharElem.value, "default")}": "#${defaultRule}#",\n`;
         mainElem.innerHTML = result;
       }
 
