@@ -1,12 +1,11 @@
 {
-	"test": [
-		
-	],
+	"test": [],
 	"origin": [
 		"#procedural#",
 		"#short#",
 		"#short#",
 		"#short#",
+		"#tiny#",
 		"#tiny#",
 		"#tiny#",
 		"#rare#",
@@ -85171,6 +85170,8 @@
 		"erasers sure do erase",
 		"#wordle-result#",
 		"Do you see something? #babel-img#",
+		"Do you see something? #babel-img#",
+		"Do you see anything? #babel-img#",
 		"Do you see anything? #babel-img#",
 		"I have been captured by an extraterrestrial that calls itself a “#pokémon#”. Send help now.",
 		"Please don't touch that!! I need that bottle of #lots-of-chrs# to survive!!! ...",
@@ -85184,7 +85185,40 @@
 		"https://www.merriam-webster.com/dictionary/#word#",
 		"#set-15#",
 		"Ever since #person# ate that #special-0#-infused #food# that got delivered by #number# #animal.s# from #place#, #pronoun-they# hasn't been the same...",
-		"It's the year #one-to-nine##one-to-nine##one-to-nine##one-to-nine#, and we're all playing DELTARUNE Chapter {n}#punc-end#"
+		"It's the year #one-to-nine##one-to-nine##one-to-nine##one-to-nine#, and we're all playing DELTARUNE Chapter {n}#punc-end#",
+		"I'm highly elusive and kind of hot...",
+		"Controversial take, but #short#",
+		"You look gay.",
+		"*I* look gay",
+		"I work in a coal mine in #place# and earn #amount-of-money# per #time-normal##punc-end#",
+		"I'm not done talking, I'm never done talking...",
+		"I'm not evil, at all! ...",
+		"I am not a washing machine.",
+		"I have committed no felonies, at all. No.",
+		"Merry Christmas!!!",
+		"I'm actually omniscient, but nobody knows.",
+		"I'm partially waterproof.",
+		"I don't drink coffee.",
+		"I'm not even 2 years old!",
+		"I am a professional.\nAt everything.",
+		"What!? You ate my #animal#-flavoured #food#!!?",
+		"I'm made up of more than just one used paper towel...",
+		"I have not been killed by #animal.a# before, I swear!",
+		"Less talking, more #verb-ing#!!!",
+		"Less #verb-ing#, more #verb-ing#!??",
+		"Less #verb-ing#, more talking!!! 😎",
+		"Less talking, more talking!!!!!!!!!!!!!!!!",
+		"It's time for you to get a job, #names-generic#.",
+		"You need a haircut#punc-end#",
+		"Don't panic, I have #food##punc-end#",
+		"Waiter, there's #animal.a# in my #food##punc-end#",
+		"Not only do I #lots-of-chrs#, I also #lots-of-chrs#",
+		"I'm the best #sport# player you've ever see–Oh, I forgot, I don't have a word set called \"sport\" yet...\n\nAnyway, I've been reading this book, “#book.captialize#”, and I'm really enjoying it so far ...",
+		"I wish I could post GIFs..",
+		"Sometimes I just feel like dissolving in a shallow puddle of water at twilight...",
+		"I hate working at #workplace#, It's just so– ... Not again!",
+		"[_a:#animal#]#number# #_a.s#!!? That's a shitload of #_a.s#!!!",
+		"[_a:#animal#]#integer# #_a.s.capitalize#!!? That's a shitload of #_a.s.capitalize#!!!"
 	],
 	"colours": [
 		"alizarin",
@@ -108553,6 +108587,7 @@
 		"Singapore",
 		"Philadelphia",
 		"Atlanta",
+		"Ãķğŕƴþĵɓṭŷ",
 		"Fukuoka",
 		"Barcelona",
 		"Saint Petersburg",
@@ -108931,6 +108966,7 @@
 		"Do you see something?\n\n#babel-img-sunset-old#",
 		"Do you see anything? #babel-img-loss#",
 		"Colorless green ideas sleep furiously...",
+		"Wիat's up?",
 		"#svg-quote-scream#",
 		"#rare#",
 		"#rare#"
@@ -127168,9 +127204,7 @@
 		"8",
 		"9"
 	],
-	"test-svg": [
-		
-	],
+	"test-svg": [],
 	"svg-quote": [
 		"{svg <svg version=\"1.1\" width=\"1600\" height=\"1200\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><rect width=\"100%\" height=\"100%\" fill=\"#hex-colour#\" /><text fill=\"white\" x=\"40\" y=\"180\" font-size=\"220\" font-weight=\"bold\">“</text><text fill=\"white\" x=\"180\" y=\"110\" inline-size=\"1000px\" dominant-baseline=\"central\" font-family=\"Trebuchet MS\" font-size=\"60\">#adjective.capitalize# #animal.s#,</text><text fill=\"white\" x=\"156\" y=\"200\" inline-size=\"1000px\" dominant-baseline=\"central\" font-family=\"Trebuchet MS\" font-size=\"68\">#verb-ed# #determiner# #noun#</text><text fill=\"white\" x=\"100\" y=\"350\" inline-size=\"1000px\" font-style=\"italic\" font-weight=\"bold\" dominant-baseline=\"central\" font-family=\"Trebuchet MS\" font-size=\"140\">#adverb#.</text><text fill=\"white\" x=\"100\" y=\"480\" inline-size=\"1000px\" dominant-baseline=\"central\" font-family=\"Trebuchet MS\" font-size=\"68\">#pronoun-they.capitalize# #verb-ed# #pronoun-their# #word#,</text><text fill=\"white\" x=\"140\" y=\"572\" inline-size=\"1000px\" dominant-baseline=\"central\" font-family=\"Trebuchet MS\" font-size=\"52\">and #verb-ed# #adverb#,</text><text fill=\"white\" x=\"108\" y=\"680\" inline-size=\"1000px\" dominant-baseline=\"central\" font-family=\"Trebuchet MS\" font-size=\"76\">#adjective# #place#,</text><text fill=\"white\" x=\"140\" y=\"912\" inline-size=\"1000px\" dominant-baseline=\"central\" font-family=\"Trebuchet MS\" font-size=\"170\" font-weight=\"bold\">#word#.<tspan font-weight=\"bold\" font-family=\"Times New Roman\" font-size=\"280\">”</tspan></text><text fill=\"black\" text-anchor=\"end\" y=\"1080\" x=\"1520\" inline-size=\"1000px\" dominant-baseline=\"central\" font-family=\"cursive\" font-size=\"100\">‒ #person# <tspan font-family=\"Trebuchet MS\" font-size=\"80\">(#year#)</tspan></text></svg> Very real quote}{lang en}"
 	],
@@ -127207,7 +127241,5 @@
 	"display-word": [
 		"[_t:#word.capitalize#]{svg <svg width=\"600\" height=\"600\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"#hex-colour#\" /><text x=\"20\" y=\"310\" fill=\"white\" font-weight=\"bold\" font-family=\"Arial\" stroke=\"black\" font-size=\"60\" dominant-baseline=\"central\">#_t#.</text></svg> Image reading \"#_t#\"}"
 	],
-	"blank": [
-		
-	]
+	"blank": []
 }
