@@ -99,20 +99,31 @@
         whitespace.value = "  ";
       const newlines = document.querySelector("#newlines");
 
-      const sorted = rules.sort((a, b) => { // make dashes come first
+      function sort(a, b) { // make dashes come first
         const cA = (a.match(/-/g) || []).length;
         const cB = (b.match(/-/g) || []).length;
         return cB - cA;
-      });
+      }
+
+      const sorted = rules.sort(sort);
+
+      const sorted0 = Object.keys(main).sort(sort);
 
       // button functions
 
       function forReplies() {
         let result = "";
 
-        sorted.forEach(r => {
-            // result += `  "(?<=\\\\s|^)\\\\?post:\\\\s*${r}(?:\\\\s.*)?$": "#${r}#",\n`;
+        sorted0.forEach(r => {
+          // result += `  "(?<=\\\\s|^)\\\\?post:\\\\s*${r}(?:\\\\s.*)?$": "#${r}#",\n`;
+
+          if (excluded.includes(r)) {
+            result += `"${templateElem.value.replaceAll(replaceCharElem.value, r)}": "\\\\[${r}\\\\] Rule has been excluded",\n`;
+          } else if (r.substring(0, 4) === "test") {
+            result += `"${templateElem.value.replaceAll(replaceCharElem.value, r)}": "\\\\[${r}\\\\] Test rule has been excluded",\n`;
+          } else {
             result += `"${templateElem.value.replaceAll(replaceCharElem.value, r)}": "#${r}#",\n`;
+          }
         });
 
         // result += `  "${templateElem.value.replaceAll(replaceCharElem.value, "default")}": "#${defaultRule}#",\n`;
