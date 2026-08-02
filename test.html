@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Test</title>
+    <title>Test Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style id="selection"></style>
     <style>
@@ -48,7 +48,7 @@
     </style>
   </head>
   <body>
-    <!-- Overlay to make dark mode users hopefully not go blind -->
+    <!-- Overlay to make any dark mode users hopefully not go blind -->
     <div id="overlay"></div>
 
     <h1 id="gibberish" title="Inspiring text to enlighten you" aria-hidden="true"></h1>
@@ -56,6 +56,8 @@
 
     <script>
       "use strict";
+
+      console.log("hi", [":)", ":3", ">:(", ":P", ";P"][Math.floor(Math.random() * 5)]);
 
       // randomise colours
 
@@ -84,7 +86,7 @@
       }
 
       function opposite() {
-        const max = 16777215; // #FFFFFF
+        const max = 16777215; // (#FFFFFF)
         
         function hex(num) {
           return "#" + Math.round(num).toString(16).padStart(6, "0");
@@ -92,16 +94,16 @@
 
         const ran = Math.round(Math.random() * max);
 
-        const colours = [
+        const colors = [
           hex(ran),
           hex(max - ran)
         ];
 
-        return colours;
+        return colors;
       }
 
       function gibberish() {
-        const gibberish = document.querySelector("#gibberish");
+        const gibberishText = document.querySelector("#gibberish");
         const chars = "aabcdeefghiijklmnoopqrstuuvwxyz'".split("");
         const length = { min: 8, max: 12 };
 
@@ -111,7 +113,9 @@
           str += chars[Math.floor(Math.random() * chars.length)];
         }
 
-        gibberish.textContent = str;
+        // str = str.charAt(0).toUpperCase() + str.slice(1);
+
+        gibberishText.textContent = str;
       }
     </script>
   </body>
