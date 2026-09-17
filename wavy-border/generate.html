@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      body {
+        font-family: Arial;
+      }
+
+      button, input[type=button], input[type=color] {
+        cursor: pointer;
+      }
+
+      section {
+        margin-left: 20px;
+        margin-block: 30px;
+      }
+
+      textarea {
+        width: 800px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Wavy Border Generator</h1>
+    <section id="svg">
+      <h3>SVG</h3>
+      <!-- colour option -->
+      <label for="color">Colour:</label>
+      <input type="color" id="color" value="#D47EFD" />
+
+      <br><br>
+
+      <button onclick="output.value = generate()">Generate</button>
+      <button onclick="download()">Download</button>
+      <button onclick="copy(output.value)">Copy</button>
+      <br><br>
+
+      <textarea id="output" spellcheck="false"></textarea>
+    </section>
+    <hr>
+
+    <section id="css">
+      <h3>CSS</h3>
+      <button onclick="copy(styles.value)">Copy</button>
+      <br><br>
+
+      <textarea id="styles">
+&lt;selector&gt; {
+  border: &lt;size&gt; solid;
+  border-image: url(&lt;URI to file&gt;) fill 100 round;
+}</textarea>
+    </section>
+
+    <script>
+      "use strict";
+
+      output.value = generate();
+
+      function generate() {
+        const svg = `
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="300" height="300" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+  <path d="M67.5,100c0,-17.937 14.563,-32.5 32.5,-32.5c9.973,0 19.167,3.361 25,7.5c5.833,4.139 15.027,7.5 25,7.5c9.973,0 19.167,-3.361 25,-7.5c5.833,-4.139 15.027,-7.5 25,-7.5c17.937,0 32.5,14.563 32.5,32.5c0,9.973 -3.361,19.167 -7.5,25c-4.139,5.833 -7.5,15.027 -7.5,25c0,9.973 3.361,19.167 7.5,25c4.139,5.833 7.5,15.027 7.5,25c0,17.937 -14.563,32.5 -32.5,32.5c-9.973,0 -19.167,-3.361 -25,-7.5c-5.833,-4.139 -15.027,-7.5 -25,-7.5c-9.973,0 -19.167,3.361 -25,7.5c-5.833,4.139 -15.027,7.5 -25,7.5c-17.937,0 -32.5,-14.563 -32.5,-32.5c0,-9.973 3.361,-19.167 7.5,-25c4.139,-5.833 7.5,-15.027 7.5,-25c0,-9.973 -3.361,-19.167 -7.5,-25c-4.139,-5.833 -7.5,-15.027 -7.5,-25Z" style="fill:${color.value};" />
+</svg>
+`.trimStart();
+
+        return svg;
+      }
+
+      function download() {
+        const filename = "border.svg";
+
+        const dlnk = document.createElement("a");
+        dlnk.href = "data:image/svg+xml;utf8," + encodeURIComponent( generate() );
+        dlnk.download = filename;
+        dlnk.style.display = "none";
+        document.body.appendChild(dlnk);
+        dlnk.click();
+        document.body.removeChild(dlnk);
+      }
+
+      function copy(thing) { navigator.clipboard.writeText(thing); }
+    </script>
+  </body>
+</html>

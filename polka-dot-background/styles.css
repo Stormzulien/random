@@ -1,0 +1,12 @@
+body {
+  background-image: url("./dot_pattern.svg");
+  background-color: #A9CDCA;
+  background-blend-mode: multiply;
+  background-size: clamp(10px, 4vw, 45px);
+}
+
+@media screen and (width < 1100px) {
+  body {
+    background-size: clamp(60px, 4vw, 90px);
+  }
+}
