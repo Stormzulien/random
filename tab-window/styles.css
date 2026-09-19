@@ -1,7 +1,16 @@
 @import url("./tab_window.css");
 
 * {
+  -webkit-tap-highlight-color: transparent;
   box-sizing: border-box;
+}
+
+*:focus {
+  transition: outline 0s !important;
+}
+
+*:focus-visible {
+  outline: 4px dashed orange !important;
 }
 
 html, body {
