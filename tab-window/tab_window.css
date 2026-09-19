@@ -150,13 +150,14 @@ tab-window.vertical.reverse .tab-list .tab > button {
 /* .tab-icon */
 
 tab-window .tab-list .tab > button .tab-icon {
-  height: 1.6em;
-  width: 1.6em;
-  margin-bottom: 0.2em;
+  height: 1.4em;
+  width: 1.4em;
+  margin-bottom: 0;
   margin-left: 0.4em;
   margin-right: -0.3em;
   user-select: none;
   -webkit-user-drag: none;
+  object-fit: contain;
 }
 
 /* .tab-title */
