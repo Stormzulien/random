@@ -1,0 +1,21 @@
+@import url("./tab_window.css");
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial;
+  background-color: rgb(63, 41, 0);
+}
+
+button {
+  cursor: pointer;
+}
+
+#mytabs {
+}
