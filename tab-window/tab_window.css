@@ -53,12 +53,17 @@ tab-window .tab-list {
   overflow: auto;
 }
 
+tab-window.horizontal .tab-list::-webkit-scrollbar {
+  display: none;
+}
+
 tab-window.horizontal .tab-list {
   flex-direction: row;
   border-top-left-radius: var(--corner-radius);
   border-top-right-radius: var(--corner-radius);
   height: var(--tab-height);
-  overflow: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 tab-window.horizontal.reverse .tab-list {
