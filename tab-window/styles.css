@@ -29,7 +29,9 @@ button {
 code {
   background-color: #EEE;
   padding: 0.2em 0.4em;
-  border-radius: 6px;
+  border-radius: 4px;
+  margin-inline: 0.2em;
+  display: inline;
 }
 
 #mytabs {
