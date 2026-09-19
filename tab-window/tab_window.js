@@ -6,7 +6,7 @@
 
     <tab-window data-default-tab="TAB_ID" class="(horizontal | vertical) +reverse">
 
-      <ol class="tab-list"> (e.g. class="vertical reverse", class="horizontal")
+      <ol class="tab-list" data-scroll-step="50 (OPTIONAL)"> (e.g. class="vertical reverse", class="horizontal")
 
         <li class="tab" data-tab-id="TAB_ID">
           <button>
@@ -81,10 +81,10 @@ function initTabs() {
 
     { // Horizontal scrolling for the tab bar
       if (tabWindow.classList.contains("horizontal")) {
+        const scrollStep = Number(tabList.dataset.scrollStep) || 50;
 
         tabList.addEventListener("wheel", event => {
           event.preventDefault();
-          const scrollStep = 50;
           tabList.scrollLeft += event.deltaY > 0 ? scrollStep : -scrollStep;
         });
       }
