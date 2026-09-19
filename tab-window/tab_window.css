@@ -255,7 +255,7 @@ tab-window .tab-content .tab-body.active {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  /* :root {
     --text-color: #D4D4D4;
     --tab-body-color: #050520;
     --border-color: black;
@@ -269,5 +269,5 @@ tab-window .tab-content .tab-body.active {
     --unselected-tab-active-color: #0D0D49;
 
     --tab-list-background-color: #0D0D49;
-  }
+  } */
 }
