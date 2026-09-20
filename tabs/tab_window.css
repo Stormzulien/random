@@ -1,0 +1,282 @@
+/* Not great. Issues with horizontal scrollbar, can't find a fix. */
+
+:root {
+  --text-color: black;
+  --tab-body-color: white;
+  --border-color: grey;
+
+  --selected-tab-dormant-color: white;
+  --selected-tab-hover-color: white;
+  --selected-tab-active-color: white;
+
+  --unselected-tab-dormant-color: gainsboro;
+  --unselected-tab-hover-color: #E9E9E9;
+  --unselected-tab-active-color: #E9E9E9;
+
+  --tab-list-background-color: gainsboro;
+  --tab-height: 2.3em;
+  --corner-radius: 6px;
+}
+
+tab-window {
+  display: flex;
+  max-width: 500px;
+  height: 300px;
+  overflow: hidden;
+  color: var(--text-color);
+
+  &.horizontal {
+    flex-direction: column;
+
+    &.reverse {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &.vertical {
+    flex-direction: row;
+
+    &.reverse {
+      flex-direction: row-reverse;
+    }
+  }
+}
+
+/* .tab-list */
+
+tab-window .tab-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  background-color: var(--tab-list-background-color);
+  overflow: auto;
+}
+
+tab-window.horizontal .tab-list::-webkit-scrollbar {
+  display: none;
+}
+
+tab-window.horizontal .tab-list {
+  flex-direction: row;
+  border-top-left-radius: var(--corner-radius);
+  border-top-right-radius: var(--corner-radius);
+  height: var(--tab-height);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+tab-window.horizontal.reverse .tab-list {
+  border-radius: 0;
+  border-bottom-left-radius: var(--corner-radius);
+  border-bottom-right-radius: var(--corner-radius);
+}
+
+tab-window.vertical .tab-list {
+  flex-direction: column;
+  width: 10em;
+  border-top-left-radius: var(--corner-radius);
+  border-bottom-left-radius: var(--corner-radius);
+  overflow: auto;
+  scrollbar-width: none;
+  height: 100%;
+
+  &:hover {
+    scrollbar-width: thin;
+  }
+}
+
+tab-window.vertical.reverse .tab-list {
+  border-radius: 0;
+  border-top-right-radius: var(--corner-radius);
+  border-bottom-right-radius: var(--corner-radius);
+}
+
+/* .tab */
+
+tab-window .tab-list .tab {
+  display: flex;
+}
+
+/* .tab > button */
+
+tab-window .tab-list .tab > button {
+  background-color: var(--unselected-tab-dormant-color);
+  border: 0px solid transparent;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  height: 100%;
+  font-size: 1em;
+  transition: background-color 0.1s;
+
+  &:hover {
+    background-color: var(--unselected-tab-hover-color);
+  }
+
+  &:active {
+    background-color: var(--unselected-tab-active-color);
+  }
+}
+
+tab-window.horizontal .tab-list .tab > button {
+  min-width: 6em;
+  max-width: 10em;
+  border-top-left-radius: var(--corner-radius);
+  border-top-right-radius: var(--corner-radius);
+}
+
+tab-window.horizontal.reverse .tab-list .tab > button {
+  border-radius: 0;
+  border-bottom-left-radius: var(--corner-radius);
+  border-bottom-right-radius: var(--corner-radius);
+}
+
+tab-window.vertical .tab-list .tab > button {
+  width: 100%;
+  height: var(--tab-height);
+  /* border-bottom: 1px solid grey; */
+  border-top-left-radius: var(--corner-radius);
+  border-bottom-left-radius: var(--corner-radius);
+}
+
+tab-window.vertical.reverse .tab-list .tab > button {
+  border-radius: 0;
+  border-top-right-radius: var(--corner-radius);
+  border-bottom-right-radius: var(--corner-radius);
+}
+
+/* .tab-icon */
+
+tab-window .tab-list .tab > button .tab-icon {
+  pointer-events: none;
+  image-rendering: pixelated;
+  height: 1.24em;
+  width: 1.24em;
+  margin-bottom: 0;
+  margin-left: 0.4em;
+  margin-right: -0.3em;
+  user-select: none;
+  -webkit-user-drag: none;
+  object-fit: contain;
+}
+
+/* .tab-title */
+
+tab-window .tab-list .tab > button .tab-title {
+  font-size: 0.95em;
+  margin-left: 0.6em;
+  margin-right: 1em;
+  margin-bottom: -0.16em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--text-color);
+}
+
+tab-window .tab-list .tab.active > button .tab-title {
+  font-weight: bold;
+}
+
+/* ACTIVE TAB: .tab.active button */
+
+tab-window .tab-list .tab.active > button {
+  background-color: var(--selected-tab-dormant-color);
+
+  &:hover {
+    background-color: var(--selected-tab-hover-color);
+  }
+
+  &:active {
+    background-color: var(--selected-tab-active-color);
+  }
+}
+
+tab-window.horizontal .tab-list .tab.active > button {
+  border-top-left-radius: var(--corner-radius);
+  border-top-right-radius: var(--corner-radius);
+}
+
+tab-window.horizontal.reverse .tab-list .tab.active > button {
+  border-radius: 0;
+  border-bottom-left-radius: var(--corner-radius);
+  border-bottom-right-radius: var(--corner-radius);
+}
+
+tab-window.vertical .tab-list .tab.active > button {
+  border-top-left-radius: var(--corner-radius);
+  border-bottom-left-radius: var(--corner-radius);
+}
+
+tab-window.vertical.reverse .tab-list .tab.active > button {
+  border-radius: 0;
+  border-top-right-radius: var(--corner-radius);
+  border-bottom-right-radius: var(--corner-radius);
+}
+
+/* .tab-content */
+
+tab-window .tab-content {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+tab-window.horizontal .tab-content {
+  border-bottom-left-radius: var(--corner-radius);
+  border-bottom-right-radius: var(--corner-radius);
+}
+
+tab-window.horizontal.reverse .tab-content {
+  border-radius: 0;
+  border-top-left-radius: var(--corner-radius);
+  border-top-right-radius: var(--corner-radius);
+}
+
+tab-window.vertical .tab-content {
+  border-top-right-radius: var(--corner-radius);
+  border-bottom-right-radius: var(--corner-radius);
+}
+
+tab-window.vertical.reverse .tab-content {
+  border-radius: 0;
+  border-top-left-radius: var(--corner-radius);
+  border-bottom-left-radius: var(--corner-radius);
+}
+
+/* .tab-content .tab-body */
+
+tab-window .tab-content .tab-body {
+  display: none;
+  height: 100%;
+  background-color: var(--tab-body-color);
+  overflow: auto;
+  padding: 0.1em 1em;
+}
+
+/* ACTIVE TAB: .tab-content .tab-body.active */
+
+tab-window .tab-content .tab-body.active {
+  display: revert;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* :root {
+    --text-color: #D4D4D4;
+    --tab-body-color: #050520;
+    --border-color: black;
+
+    --selected-tab-dormant-color: #050520;
+    --selected-tab-hover-color: #050520;
+    --selected-tab-active-color: #050520;
+
+    --unselected-tab-dormant-color: #0D0D49;
+    --unselected-tab-hover-color: midnightblue;
+    --unselected-tab-active-color: #0D0D49;
+
+    --tab-list-background-color: #0D0D49;
+  } */
+}

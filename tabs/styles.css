@@ -1,0 +1,63 @@
+@import url("./tab_window.css");
+@import url("./simple/page_tabs.css");
+
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+*:focus {
+  transition: outline 0s !important;
+}
+
+*:focus-visible {
+  outline: 4px dashed orange !important;
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial;
+}
+
+button {
+  cursor: pointer;
+}
+
+code {
+  background-color: #EEE;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  margin-inline: 0.2em;
+  display: inline-block;
+}
+
+#mytabs {
+}
+
+.verity-tab {
+  background-color: black !important;
+  color: white;
+  font-family: Papyrus;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+tab-window a,
+page-tabs a {
+  color: blue;
+}
+
+.pad {
+  height: 500px;
+}

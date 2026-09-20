@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tabs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" type="text/css" media="all" />
+  </head>
+  <body style="background-color: rgb(63, 41, 0);">
+    <tab-window data-default-tab="1" id="mytabs" class="horizontal">
+
+      <ol class="tab-list">
+        <li class="tab" data-tab-id="1"><button>
+          <img src="./img/home_icon_light.svg" class="tab-icon" />
+          <span class="tab-title">Tab 1</span>
+        </button></li>
+        
+        <li class="tab" data-tab-id="2"><button>
+          <span class="tab-title">Tab 2</span>
+        </button></li>
+        
+        <li class="tab" data-tab-id="3"><button>
+          <span class="tab-title">Tab 3</span>
+        </button></li>
+      </ol>
+
+      <div class="tab-content">
+        <div class="tab-body" data-tab-id="1">
+          <h3>Tab 1</h3>
+          <code><b>&lt;tab-window&gt;</b></code>
+          <p>My attempt at making tabs</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam maiores officia in temporibus quos debitis itaque, deserunt facere ex unde accusamus incidunt sunt fugiat iste quasi veniam doloremque? Quos, quaerat.</p>        
+        </div>
+
+        <div class="tab-body" data-tab-id="2">
+          <h3>Tab 2</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum et reprehenderit, voluptas voluptatum ab perferendis repudiandae laborum! Esse excepturi modi debitis similique, velit quos quasi recusandae facilis laboriosam minus fugit!</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam maiores officia in temporibus quos debitis itaque, deserunt facere ex unde accusamus incidunt sunt fugiat iste quasi veniam doloremque? Quos, quaerat.</p>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam recusandae qui consequuntur reiciendis dignissimos ea deleniti sunt alias incidunt, unde quo consectetur minus molestias eligendi nostrum rerum maiores, ex veniam.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo, vero. Repellendus nisi enim sunt eum, dolores molestias et eligendi doloribus accusamus, consequatur ducimus. Velit quo vitae reprehenderit autem, aliquid adipisci?</p>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta provident dolores, eligendi, ut tenetur, voluptatem iste modi vitae minus molestias necessitatibus neque laudantium ab obcaecati harum sint! Dignissimos, voluptatem vero.</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi repellat esse, explicabo iste ipsa veritatis quod quidem ex fugiat quam. Veritatis deleniti illo harum cupiditate adipisci perspiciatis fugit neque quis?</p>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime corrupti error mollitia animi eligendi quos qui sed velit sequi voluptate nostrum magni, assumenda ipsa maiores. Aspernatur eos eaque autem velit.</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati aperiam officia laborum ex nihil impedit a animi laudantium quae ducimus maiores saepe recusandae ipsum vel provident fuga sint, eos fugiat.</p>
+          <a href="#link-me"><h1 id="link-me">#link-me</h1></a>
+        </div>
+
+        <div class="tab-body" data-tab-id="3">
+          <h3>Tab 3</h3>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam ducimus deserunt et nam veniam. Ipsum in vitae optio nobis laboriosam eveniet modi. Inventore maxime culpa sequi magnam aspernatur necessitatibus ad?</p>
+        </div>
+      </div>
+    </tab-window>
+
+    <br>
+
+    <a href="./simple/index.html">&raquo; Simple</a><br>
+    <a href="./index2.html">index2.html</a><br>
+    <a href="./tab_window.js">tab_window.js</a>
+    <a href="./tab_window.css">tab_window.css</a><br>
+
+    <script src="./script.js" type="module"></script>
+  </body>
+</html>

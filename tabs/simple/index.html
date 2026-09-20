@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles.css" type="text/css" media="all" />
+    <title>Simple Tabs</title>
+  </head>
+  <body style="background-color: coral;">
+    <page-tabs data-default-tab="tab-1" class="horizontal">
+
+      <ol class="tab-list">
+        <li class="tab"><a href="#tab-1">
+          <img src="../img/home_icon_light.svg" class="tab-icon" />
+          <span class="tab-title">Tab 1</span>
+        </a></li>
+
+        <li class="tab"><a href="#tab-2">
+          <span class="tab-title">Tab 2</span>
+        </a></li>
+
+        <li class="tab"><a href="#tab-3">
+          <span class="tab-title">Tab 3</span>
+        </a></li>
+      </ol>
+
+      <div class="tab-content">
+        <div class="tab-body" id="tab-1">
+          <h3>Tab 1</h3>
+          
+          <a href="../">&laquo; Normal</a><br>
+          <a href="./page_tabs.js">page_tabs.js</a><br>
+          <a href="./page_tabs.css">page_tabs.css</a><br>
+          <br>
+          <code>&lt;page-tabs&gt;</code>
+          <p>This version makes tabs linkable!</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, dolore aaaaaaaa eveniet excepturi veritatis iure sint perspiciatis ex optio. Mollitia aperiam laboriosam quisquam itaque excepturi minus, odio asperiores maxime placeat id?</p>
+        </div>
+
+        <div class="tab-body" id="tab-2">
+          <h3>Tab 2</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe repellat ducimus ullam, quod tenetur iste eligendi, explicabo inventore sunt ipsa at exercitationem soluta ipsum dolor illo aperiam? Facilis, odio inventore.</p>
+        </div>
+
+        <div class="tab-body" id="tab-3">
+          <h3>Tab 3</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, quae incidunt, distinctio officia tenetur at, sequi quaerat voluptas voluptatibus aliquid dignissimos odit! Corrupti, deleniti doloribus! Debitis rem hic vero saepe!</p>
+        </div>
+      </div>
+
+    </page-tabs>
+
+    <br>
+    
+    <page-tabs data-default-tab="jax" class="vertical">
+
+      <ol class="tab-list">
+        <li class="tab"><a href="#jax">
+          <img src="../img/win_folder_open_4.png" class="tab-icon" />
+          <span class="tab-title">Jax</span>
+        </a></li>
+
+        <li class="tab"><a href="#ribbit">
+          <img src="../img/win_folder_open_4.png" class="tab-icon" />
+          <span class="tab-title">Ribbit</span>
+        </a></li>
+
+        <li class="tab"><a href="#ragatha">
+          <img src="../img/win_folder_open_4.png" class="tab-icon" />
+          <span class="tab-title">Ragatha</span>
+        </a></li>
+
+        <li class="tab"><a href="#bob">
+          <img src="../img/win_folder_open_4.png" class="tab-icon" />
+          <span class="tab-title">Bob</span>
+        </a></li>
+
+        <li class="tab"><a href="#kinger">
+          <img src="../img/win_folder_open_4.png" class="tab-icon" />
+          <span class="tab-title">Kinger</span>
+        </a></li>
+      </ol>
+
+      <div class="tab-content">
+        <div class="tab-body" id="jax">
+          <h3>Jax</h3>
+          <img src="../img/jax.webp" alt="Jax" width="150" />
+        </div>
+
+        <div class="tab-body" id="ribbit">
+          <h3>Ribbit</h3>
+          <img src="../img/ribbit.webp" alt="Ribbit" width="200" />
+          <a href="#link-me"><h1 id="link-me">#link-me</h1></a>
+        </div>
+
+        <div class="tab-body" id="ragatha">
+          <h3>Ragatha</h3>
+          <img src="../img/ragatha.webp" alt="Ragatha" width="100" />
+        </div>
+
+        <div class="tab-body" id="bob">
+          <h3>Bob</h3>
+          <img src="../img/bob.png" alt="Bob the Builder" width="100" />
+        </div>
+
+        <div class="tab-body" id="kinger">
+          <h3>Kinger</h3>
+          <img src="../img/kinger.webp" alt="Kinger" width="100" />
+        </div>
+      </div>
+
+    </page-tabs>
+
+    <script src="./script.js" type="module"></script>
+  </body>
+</html>
