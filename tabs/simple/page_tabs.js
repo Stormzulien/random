@@ -60,6 +60,10 @@ function initTabs() {
       const header = pageTab.querySelector(`.tab-list .tab:has( a[href="#${ normalizedId }"] )`);
       const body = pageTab.querySelector(`.tab-content .tab-body#${ normalizedId }`);
 
+      if (!body) {
+        throw new TypeError(`Tab button [id: "${id}"] does not have an associated tab`);
+      }
+
       return { header, body, id: normalizedId };
     }
 
