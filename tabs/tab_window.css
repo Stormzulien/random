@@ -1,5 +1,16 @@
 /* Not great. Issues with horizontal scrollbar, can't find a fix. */
 
+/*
+  IMPORTANT: when importing this file, add "layer" before the semicolon.
+
+  like this:
+    @import url("tab_window.css") layer;
+
+  you give it a name maybe:
+    @import url("tab_window.css") layer(tab-window);
+  
+*/
+
 :root {
   --text-color: black;
   --tab-body-color: white;
@@ -39,6 +50,10 @@ tab-window {
     &.reverse {
       flex-direction: row-reverse;
     }
+  }
+
+  &:not(:defined) {
+    display: none;
   }
 }
 

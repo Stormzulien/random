@@ -1,5 +1,5 @@
-@import url("./tab_window.css");
-@import url("./simple/page_tabs.css");
+@import url("./tab_window.css") layer;
+@import url("./simple/page_tabs.css") layer;
 
 
 * {
@@ -13,6 +13,7 @@
 
 *:focus-visible {
   outline: 4px dashed orange !important;
+  z-index: 9999;
 }
 
 html, body {
@@ -60,4 +61,17 @@ page-tabs a {
 
 .pad {
   height: 500px;
+}
+
+.blue-bg {
+  background-color: lightblue;
+  color: blue;
+}
+
+.quiet {
+  font-style: italic;
+
+  &:is(a) {
+    color: lightgrey;
+  }
 }

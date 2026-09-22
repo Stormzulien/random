@@ -1,5 +1,6 @@
 "use strict";
 
-import initTabs from "./tab_window.js";
+import "./tab_window.js";
 
-initTabs();
+// import initTabs from "./tab_window_wc.js";
+// initTabs();

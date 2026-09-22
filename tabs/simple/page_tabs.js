@@ -1,8 +1,17 @@
 /* 
-  Last updated: 20/09/2026
+  Last updated: 22/09/2026
+
+  Remember the page_tabs.css file
 
   Mostly a clone of tab_window.js but a bit simpler.
   This one allows you to link tabs like: "www.example.com/home#tab-5".
+
+  you can change the active tab like this:
+
+    const myPageTabs = document.querySelector("page-tabs#my-page-tabs");
+    myPageTabs.activeTab = "tab-2";
+
+    ⚠️ NOTE: this WON'T set the #hash in the URL. Set it using location.hash = "#..." ⚠️
 
 
   Format:
@@ -37,63 +46,75 @@
 
 "use strict";
 
-const elemName = "page-tabs";
-const pageTabs = document.querySelectorAll(elemName);
+const elemName = "page-tabs"; // set the element's name e.g. <page-tabs>! remember to update the CSS
 
 const activeClass = "active";
-const activeTabDataAttr = "activeTab";
 
-function initTabs() {
+class PageTabs extends HTMLElement {
+  // I'm completely new to this (web components). can probably be improved
+
+  constructor() {
+    super();
+  }
+
+  #initialized = false;
+  #timeoutId = null;
+  #activeTabId = null;
+
+  tabList = null; tabHeaders = null; tabBodies = null;
+
+  #normalizeId(id) {
+    return id.startsWith("#") ? id.substring(1) : id;
+  }
+
+  getTab(id) {
+    const normalizedId = this.#normalizeId(id);
+    const header = this.querySelector(`.tab-list .tab:has( a[href="#${ normalizedId }"] )`);
+    const body = this.querySelector(`.tab-content .tab-body#${ normalizedId }`);
+
+    if (!body) {
+      throw new TypeError(`Tab button [id: "${id}"] does not have an associated tab`);
+    }
+
+    return { header, body, id: normalizedId };
+  }
+
+  get activeTab() {
+    return this.#activeTabId;
+  }
   
-  pageTabs.forEach(pageTab => {
-    
-    const tabList = pageTab.querySelector(".tab-list");
-    const tabHeaders = pageTab.querySelectorAll(".tab-list .tab");
-    const tabBodies = pageTab.querySelectorAll(".tab-content .tab-body");
+  set activeTab(id) {
+    const tab = this.getTab(id);
+    this.#activeTabId = tab.id; // tab.id === normalizeId(id)
 
-    function normalizeId(id) {
-      return id.startsWith("#") ? id.substring(1) : id;
-    }
+    // Remove .active from all .tab & .tab-body
+    this.tabHeaders.forEach(tabHeader => {
+      tabHeader.ariaSelected = false;
+      tabHeader.classList.remove(activeClass);
+    });
 
-    function getTab(id) {
-      const normalizedId = normalizeId(id);
-      const header = pageTab.querySelector(`.tab-list .tab:has( a[href="#${ normalizedId }"] )`);
-      const body = pageTab.querySelector(`.tab-content .tab-body#${ normalizedId }`);
+    this.tabBodies.forEach(tabBody => tabBody.classList.remove(activeClass));
 
-      if (!body) {
-        throw new TypeError(`Tab button [id: "${id}"] does not have an associated tab`);
-      }
+    // Add .active to selected .tab & .tab-body
+    tab.header.classList.add(activeClass);
+    tab.header.ariaSelected = true;
+    tab.body.classList.add(activeClass);
+  }
 
-      return { header, body, id: normalizedId };
-    }
+  init() { // Main code
 
-    function setTab(id) {
-      const tab = getTab(id);
-
-      // Remove .active from all .tab & .tab-body
-      tabHeaders.forEach(tabHeader => {
-        tabHeader.ariaSelected = false;
-        tabHeader.classList.remove(activeClass);
-      });
-
-      tabBodies.forEach(tabBody => tabBody.classList.remove(activeClass));
-
-      // Add .active to selected .tab & .tab-body
-      tab.header.classList.add(activeClass);
-      tab.header.ariaSelected = true;
-      tab.body.classList.add(activeClass);
-
-      pageTab.dataset[activeTabDataAttr] = tab.id; // tab.id === normalizeId(id)
-    }
+    this.tabList = this.querySelector(".tab-list");
+    this.tabHeaders = this.querySelectorAll(".tab-list .tab");
+    this.tabBodies = this.querySelectorAll(".tab-content .tab-body");
 
     { // Basic a11y, set roles
-      tabList.role = "tablist";
-      tabHeaders.forEach(tabHeader => tabHeader.role = "tab");
-      tabBodies.forEach(tabBody => tabBody.role = "tabpanel");
+      this.tabList.role = "tablist";
+      this.tabHeaders.forEach(tabHeader => tabHeader.role = "tab");
+      this.tabBodies.forEach(tabBody => tabBody.role = "tabpanel");
     }
 
     { // Set default tab
-      const defaultTabId = normalizeId(pageTab.dataset.defaultTab);
+      const defaultTabId = this.#normalizeId( this.dataset.defaultTab );
 
       if (!defaultTabId) {
         throw new TypeError(
@@ -101,19 +122,19 @@ function initTabs() {
         );
       }
 
-      const locationHash = normalizeId(location.hash);
-      const selectedTab = pageTab.querySelector(`.tab-list .tab:has( a[href="#${ locationHash }"] )`);
+      const locationHash = this.#normalizeId(location.hash);
+      const selectedTab = this.querySelector(`.tab-list .tab:has( a[href="#${ locationHash }"] )`);
 
       if (selectedTab) { // If there is a selected tab (by the url #hash), select that tab's header thing
-        setTab(locationHash)
+        this.activeTab = locationHash;
       } else { // and if there isn't, use the provided default
-        setTab(defaultTabId);
+        this.activeTab = defaultTabId;
       }
     }
 
     { // Throw error if both .horizontal and .vertical class included
-      const hrz = pageTab.classList.contains("horizontal");
-      const vrt =  pageTab.classList.contains("vertical");
+      const hrz = this.classList.contains("horizontal");
+      const vrt =  this.classList.contains("vertical");
 
       if (hrz && vrt){
         throw new TypeError(
@@ -123,12 +144,12 @@ function initTabs() {
     }
 
     { // Horizontal scrolling for the tab bar
-      if (pageTab.classList.contains("horizontal")) {
-        const scrollStep = Number(tabList.dataset.scrollStep) || 50;
+      if (this.classList.contains("horizontal")) {
+        const scrollStep = Number(this.tabList.dataset.scrollStep) || 50;
 
-        tabList.addEventListener("wheel", event => {
+        this.tabList.addEventListener("wheel", event => {
           event.preventDefault();
-          tabList.scrollLeft += event.deltaY > 0 ? scrollStep : -scrollStep;
+          this.tabList.scrollLeft += event.deltaY > 0 ? scrollStep : -scrollStep;
         });
       }
     }
@@ -137,29 +158,52 @@ function initTabs() {
       const hash = location.hash;
 
       if (hash) {
-        const tab = pageTab.querySelector(`.tab-content .tab-body:has(${hash})`);
+        // any tabs with a targeted element?
+        const tab = this.querySelector(`.tab-content .tab-body:has(${hash})`);
 
         if (tab) {
-          setTab(tab.id);
+          this.activeTab = tab.id;
           document.querySelector(hash).scrollIntoView();
-          getTab(tab.id).header.scrollIntoView();
+          this.getTab(tab.id).header.scrollIntoView();
         }
       }
     }
 
     // Main behaviour
 
-    tabHeaders.forEach(tabHeader => {
+    this.tabHeaders.forEach(tabHeader => {
       tabHeader.ariaSelected ||= false;
 
       const tabHeaderAnchor = tabHeader.querySelector("a");
-      const tabHeaderAnchorId = normalizeId( tabHeaderAnchor.hash );
+      const tabHeaderAnchorId = this.#normalizeId( tabHeaderAnchor.hash );
 
-      tabHeaderAnchor.addEventListener("click", () => setTab(tabHeaderAnchorId));
+      tabHeaderAnchor.addEventListener("click", () => this.activeTab = tabHeaderAnchorId);
     });
 
-  });
 
+    this.#timeoutId = null; // put at end
+  }
+
+  // other stuffs
+
+  connectedCallback() {
+    if (this.#initialized) return; // only set up once
+
+    this.#timeoutId = setTimeout(() => {
+      this.init();
+    }, 0); // this waits for it to load idk how. please trus me
+
+    this.#initialized = true;
+  }
+
+  disconnectedCallback() {
+    if (this.#timeoutId) {
+      clearTimeout(this.#timeoutId);
+      this.#timeoutId = null;
+    }
+
+    // space to cleanup event listeners, which I'm not going to do.
+  }
 }
 
-export default initTabs;
+customElements.define(elemName, PageTabs);
