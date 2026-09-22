@@ -3,6 +3,11 @@
 
   Remember the tab_window.css file
 
+  you can change the active tab like this:
+
+    const myTabWindow = document.querySelector("tab-window#my-tab-window");
+    myTabWindow.activeTab = "3";
+
 
   Format:
 
