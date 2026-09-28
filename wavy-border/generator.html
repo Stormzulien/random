@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Wavy Border Generator</title>
+    <meta charset="UTF-8" />
+    <style>
+      body {
+        font-family: Arial;
+      }
+
+      button, input[type=button], input[type=color] {
+        cursor: pointer;
+      }
+
+      section {
+        margin-left: 20px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+
+      textarea {
+        width: 600px;
+        height: 100px;
+        /* white-space: nowrap;
+        overflow-wrap: normal; */
+      }
+
+      footer {
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+      }
+
+      a {
+        text-decoration: none;
+        &:hover { text-decoration: underline; }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Wavy Border Generator</h1>
+    <p>
+      I can't figure out a way to dynamically change the colour of the SVG so here is a generator
+      <br />
+      (unless you use JavaScript like <a href="./js-version.html">here</a>)
+    </p>
+    <section id="svg">
+      <h3>SVG</h3>
+      <!-- colour option -->
+      <label for="color">Colour:</label>
+      <input type="color" id="color" value="#D47EFD" />
+
+      <br /><br />
+
+      <button onclick="output.value = generate()">Generate</button>
+      <button onclick="output.value = generateDataURI(output.value)">Generate Data URI</button>
+      <button onclick="download()">Download</button>
+      <button onclick="copy(output.value)">Copy</button>
+      <br /><br />
+
+      <textarea id="output" spellcheck="false"></textarea>
+    </section>
+    <hr>
+
+    <section id="css">
+      <h3>CSS</h3>
+      <button onclick="copy(styles.value)">Copy</button>
+      <br /><br />
+
+      <textarea id="styles"></textarea>
+    </section>
+
+    <footer>
+      <a href="./index.html">&laquo; back</a>
+    </footer>
+
+    <script>
+      "use strict";
+
+      output.value = generate();
+
+      function generate() {
+        const svg = `
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+  style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 2;">
+  <path 
+    d="M0,50c0,-27.5957512247 22.4042487753,-50 50,-50c9.972696082181,0 19.166666766008,5.170211413874 25,11.538461891152c5.833333233992,6.368250477278 15.027303917819,11.538461891152 25,11.538461891152c9.972696082181,0 19.166666766008,-5.170211413874 25,-11.538461891152c5.833333233992,-6.368250477278 15.027303917819,-11.538461891152 25,-11.538461891152c27.5957512247,0 50,22.4042487753 50,50c0,9.972696082181 -5.170211413874,19.166666766008 -11.538461891152,25c-6.368250477278,5.833333233992 -11.538461891152,15.027303917819 -11.538461891152,25c0,9.972696082181 5.170211413874,19.166666766008 11.538461891152,25c6.368250477278,5.833333233992 11.538461891152,15.027303917819 11.538461891152,25c0,27.5957512247 -22.4042487753,50 -50,50c-9.972696082181,0 -19.166666766008,-5.170211413874 -25,-11.538461891152c-5.833333233992,-6.368250477278 -15.027303917819,-11.538461891152 -25,-11.538461891152c-9.972696082181,0 -19.166666766008,5.170211413874 -25,11.538461891152c-5.833333233992,6.368250477278 -15.027303917819,11.538461891152 -25,11.538461891152c-27.5957512247,0 -50,-22.4042487753 -50,-50c-0,-9.972696082181 5.170211413874,-19.166666766008 11.538461891152,-25c6.368250477278,-5.833333233992 11.538461891152,-15.027303917819 11.538461891152,-25c0,-9.972696082181 -5.170211413874,-19.166666766008 -11.538461891152,-25c-6.368250477278,-5.833333233992 -11.538461891152,-15.027303917819 -11.538461891152,-25Z"
+    style="fill: ${color.value};"
+  />
+</svg>
+`.trimStart();
+
+        return svg;
+      }
+
+      function generateDataURI() {
+        return "data:image/svg+xml;base64," + btoa( generate() );
+      }
+
+      function download() {
+        const filename = `border_HEX${color.value.substring(1).toUpperCase()}.svg`;
+
+        const $dlnk = document.createElement("a");
+        $dlnk.href = generateDataURI();
+        $dlnk.download = filename;
+        $dlnk.style.display = "none";
+        document.body.appendChild($dlnk);
+        $dlnk.click();
+        document.body.removeChild($dlnk);
+      }
+
+      function copy(thing) { navigator.clipboard.writeText(thing); }
+
+      {
+        styles.value = `
+/* change this to whatever */
+.box {
+  border-width: 25px;
+  width: 500px;
+  height: 500px;
+}
+
+/* keep this */
+.wavy-border {
+  border-style: solid;
+  border-image: url(<URI to file>) fill 25% round;
+}
+`.trimStart();
+      }
+    </script>
+  </body>
+</html>

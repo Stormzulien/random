@@ -1,9 +1,21 @@
-* {
-  image-rendering:pixelated;
-}
-
 body {
   font-family: Arial;
+}
+
+button { cursor: pointer; }
+
+.box {
+  width: min-content;
+  border-width: 25px;
+
+  .inner {
+    width: 504px;
+    height: 200px;
+    font: 20px "Comic Sans MS", "Comic Sans", Arial;
+    resize: both;
+    overflow: hidden;
+    outline: none;
+  }
 }
 
 footer {
@@ -12,20 +24,12 @@ footer {
   left: 10px;
 }
 
-.box {
-  width: min-content;
-  padding: 10px;
+a {
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
 }
-
-textarea {
-  width: 500px;
-  height: 200px;
-  font-size: 30px;
-}
-
-/* MAIN */
 
 .wavy-border {
-  border: 40px solid transparent;
-  border-image: url("./border.svg") fill 100 round;
+  border-style: solid;
+  border-image: url("./border.svg") fill 25% round;
 }

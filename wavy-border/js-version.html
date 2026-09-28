@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Wavy Border (JavaScript)</title>
+    <meta charset="UTF-8" />
+    <!-- <link rel="stylesheet" href="./styles.css" type="text/css" media="all" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="./wavy_border_colors.js"></script>
+    <style>
+      body { font-family: Arial; }
+
+      button { cursor: pointer; }
+
+      footer {
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+      }
+
+      a {
+        text-decoration: none;
+        &:hover { text-decoration: underline; }
+      }
+
+      #box2 {
+        width: 500px;
+        min-height: 400px;
+        border-width: 10px;
+        border-color: #988776; /* change this */
+        font-size: 20px;
+        padding: 10px;
+      }
+
+      #box3 {
+        border-width: 40px;
+        border-color: aquamarine;
+      }
+
+      code {
+        font-size: 15px;
+        background-color: white;
+        padding: 0.1em 0.2em;
+        border-radius: 4px;
+        white-space: pre;
+        display: block;
+      }
+
+      .wavy-border {
+        border-style: solid;
+        border-image: var(--border-svg) fill 25% round; 
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Alternative JavaScript method</h1>
+    <div id="box2" class="wavy-border">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, distinctio modi placeat, illum facilis ratione deserunt sunt, quibusdam magni aliquid quam nisi perspiciatis ipsum enim quidem asperiores qui architecto alias!
+      <br /><br />
+      <span><b>Set border colour:</b></span>
+      <input type="color" id="color_box2" value="#B54A4A" />
+      <button onclick="updateBorderColor(box2, color_box2.value)">Set</button>
+      <br /><br />
+      <h5>Import:</h5>
+      <code id="import">&lt;script defer src="<a href="./wavy_border_colors.js">./wavy_border_colors.js</a>"&gt;&lt;/script&gt;</code>
+      <h5>CSS:</h5>
+<code>.wavy-border {
+  border-style: solid;
+  border-image: var(--border-svg) fill 25% round; 
+}</code>
+
+    </div>
+
+    <br />
+
+    <div id="box3" class="wavy-border">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel doloribus nam animi nobis, quae quaerat laudantium debitis enim consequuntur quo impedit, tenetur inventore assumenda, similique quod tempore minima porro exercitationem.
+      <br /><br />
+      <span><b>Set border colour:</b></span>
+      <input type="color" id="color_box3" value="#B54A4A" />
+      <button onclick="updateBorderColor(box3, color_box3.value)">Set</button>
+    </div>
+
+    <footer>
+      <a href="./generator.html">&laquo; back</a>
+    </footer>
+  </body>
+</html>
