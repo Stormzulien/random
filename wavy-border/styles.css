@@ -7,6 +7,7 @@ button { cursor: pointer; }
 .box {
   width: min-content;
   border-width: 25px;
+  background-color: #e695f7;
 
   .inner {
     width: 504px;
@@ -31,5 +32,7 @@ a {
 
 .wavy-border {
   border-style: solid;
-  border-image: url("./border.svg") fill 25% round;
+  background-clip: padding-box;
+  border-image: url("./img/border.svg") 25% round;
+  /* border-image: url("./img/border.svg") fill 25% round; */
 }

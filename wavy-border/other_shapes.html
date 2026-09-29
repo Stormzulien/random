@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <title>Other Shapes</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #CCC;
+      }
+
+      div {
+        width: 200px;
+        height: 200px;
+        border-width: 20px;
+      }
+
+      main {
+        max-width: 1100px;
+        background-color: white;
+        padding: 16px;
+        border-radius: 6px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        margin: 40px;
+        margin-top: 0;
+        justify-items: center;
+        gap: 20px;
+        box-shadow: 0px 0px 7px 1px #0000002A;
+        text-align: center;
+
+        @media screen and (width <= 1135px) {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @media screen and (width <= 892px) {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        @media screen and (width <= 624px) {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .fancy-border {
+        border-style: solid;
+
+        &.zigzag {
+          border-image: url("./img/zigzag.svg") fill 25% round;
+        }
+
+        &.zigzag-2 {
+          border-image: url("./img/zigzag_2.svg") fill 25% round;
+        }
+
+        &.lily-pad {
+          border-image: url("./img/lily_pad.svg") fill 25% round;
+        }
+
+        &.lily-pad-2 {
+          border-image: url("./img/lily_pad_2.svg") fill 25% round;
+        }
+
+        &.strange {
+          border-image: url("./img/strange.svg") fill 25% round;
+        }
+
+        &.wave-h {
+          border-image: url("./img/wave_h.svg") fill 25% round;
+        }
+
+        &.wave-v {
+          border-image: url("./img/wave_v.svg") fill 25% round;
+        }
+
+        &.rings {
+          border-image: url("./img/rings.svg") fill 25% round;
+        }
+
+        &.bumpy-1 {
+          border-image: url("./img/bumpy_1.svg") fill 25% round;
+        }
+
+        &.bumpy-2 {
+          border-image: url("./img/bumpy_2.svg") fill 25% round;
+        }
+
+        &.spiky-1 {
+          border-image: url("./img/spiky_1.svg") fill 25% round;
+        }
+
+        &.spiky-2 {
+          border-image: url("./img/spiky_2.svg") fill 25% round;
+        }
+      }
+    </style>
+  </head>
+  <body>
+      <h1>Examples</h1>
+    <main>
+      <div class="fancy-border zigzag">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias modi minus velit eligendi esse culpa ut vitae dolore unde! Minus officiis eum suscipit cumque earum libero debitis vitae aut esse?
+      </div>
+      <div class="fancy-border zigzag-2">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident nesciunt tempora, cum voluptates beatae magnam minus temporibus corrupti ea voluptatum ullam ab saepe consectetur ex earum dolore atque, qui deserunt?
+      </div>
+      <div class="fancy-border lily-pad">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis, porro, recusandae eos, provident sequi dignissimos magni quas cum quae ducimus aut nobis cumque. Rem eveniet quisquam beatae rerum. Minima, sed.
+      </div>
+      <div class="fancy-border lily-pad-2">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, excepturi consectetur dignissimos provident consequatur tempore quos. Voluptatum adipisci laboriosam quis praesentium voluptatibus quas voluptas debitis fuga optio, nam aut quasi.
+      </div>
+      <div class="fancy-border strange">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus aperiam distinctio, accusamus voluptate expedita nihil suscipit quia possimus repellendus quisquam recusandae placeat ut voluptatem fugiat a veniam maiores debitis! Error?
+      </div>
+      <div class="fancy-border wave-h">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa excepturi quo, aliquid maiores facilis non quam facere velit eligendi cupiditate, perferendis itaque. Ad id blanditiis fuga sequi, molestiae inventore totam!
+      </div>
+      <div class="fancy-border wave-v">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias, sapiente fugit? Unde necessitatibus ipsam dolores animi eius ea reprehenderit facere magnam suscipit quaerat! Recusandae sit dolorum, fugit nesciunt molestias tenetur.
+      </div>
+      <div class="fancy-border rings">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, iure. Sint iste fugit nulla assumenda optio suscipit eius laboriosam animi commodi aliquid. Similique amet rem exercitationem, nam inventore delectus modi!
+      </div>
+      <div class="fancy-border bumpy-1">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident quam ratione totam officia consequatur laborum culpa placeat ex necessitatibus facilis. Velit, voluptatum sint quia neque consectetur laborum perspiciatis fuga id!
+      </div>
+      <div class="fancy-border bumpy-2">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, est dolore. Iure placeat autem hic eveniet facere accusantium qui dolorum itaque adipisci. Repellat culpa inventore, necessitatibus saepe velit temporibus cumque.
+      </div>
+      <div class="fancy-border spiky-1">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum deserunt facilis veritatis praesentium provident ex earum illo, vero molestias velit quisquam, porro unde quo omnis nihil ipsam totam ad. Iusto.
+      </div>
+      <div class="fancy-border spiky-2">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat tenetur fugit repudiandae neque cupiditate sit, corrupti facilis inventore adipisci accusamus quae nisi mollitia voluptate aliquam expedita saepe veniam quidem omnis.
+      </div>
+    </main>
+  </body>
+</html>

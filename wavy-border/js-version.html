@@ -46,6 +46,7 @@
       }
 
       .wavy-border {
+        background-clip: padding-box;
         border-style: solid;
         border-image: var(--border-svg) fill 25% round; 
       }
@@ -64,8 +65,10 @@
       <code id="import">&lt;script defer src="<a href="./wavy_border_colors.js">./wavy_border_colors.js</a>"&gt;&lt;/script&gt;</code>
       <h5>CSS:</h5>
 <code>.wavy-border {
+  background-clip: padding-box;
   border-style: solid;
-  border-image: var(--border-svg) fill 25% round; 
+  border-image: var(--border-svg) fill 25% round;
+  /* remove fill if you want to set a background-color */
 }</code>
 
     </div>
