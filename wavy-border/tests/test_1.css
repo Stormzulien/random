@@ -1,0 +1,12 @@
+* {
+  image-rendering: pixelated;  
+}
+
+body {
+  font-family: Arial;
+}
+
+main {
+  border: 50px solid transparent;
+  border-image: url("./border_1.png") 7 round;
+}

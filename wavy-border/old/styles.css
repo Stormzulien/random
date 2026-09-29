@@ -1,0 +1,31 @@
+* {
+  image-rendering:pixelated;
+}
+
+body {
+  font-family: Arial;
+}
+
+footer {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
+
+.box {
+  width: min-content;
+  padding: 10px;
+}
+
+textarea {
+  width: 500px;
+  height: 200px;
+  font-size: 30px;
+}
+
+/* MAIN */
+
+.wavy-border {
+  border: 40px solid transparent;
+  border-image: url("./border.svg") fill 100 round;
+}

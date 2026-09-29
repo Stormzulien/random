@@ -1,0 +1,21 @@
+body {
+  font-family: Arial;
+}
+
+main {
+  width: 500px;
+  border: 40px solid;
+  border-image: url("./border_5.svg") fill 100 round;
+  padding: 0px;
+}
+
+#colour-test {
+  --c: rgb(183, 169, 205);
+
+  width: 200px;
+  height: 200px;
+  background-image: url("./colours.svg");
+  background-color: var(--c);
+  border: 10px solid var(--c);
+  background-blend-mode: multiply;
+}
