@@ -11,7 +11,8 @@
   
 */
 
-:root {
+
+tab-window {
   --text-color: black;
   --tab-body-color: white;
   --border-color: grey;
@@ -27,11 +28,9 @@
   --tab-list-background-color: gainsboro;
   --tab-height: 2.3em;
   --corner-radius: 6px;
-}
 
-tab-window {
   display: flex;
-  max-width: 500px;
+  width: 500px;
   height: 300px;
   overflow: hidden;
   color: var(--text-color);

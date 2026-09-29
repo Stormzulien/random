@@ -3,6 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles.css" type="text/css" media="all" />
+    <script defer src="./script.js" type="module" type="text/javascript"></script>
     <title>Simple Tabs</title>
   </head>
   <body style="background-color: coral;">
@@ -27,11 +28,11 @@
         <div class="tab-body" id="tab-1">
           <h3>Tab 1</h3>
           
-          <a href="../">&laquo; Normal</a><br>
-          <a href="./page_tabs.js">page_tabs.js</a><br>
-          <a class="quiet" style="color: #4ABBE0;" href="./page_tabs_old.js">page_tabs_old.js</a><br>
-          <a href="./page_tabs.css">page_tabs.css</a><br>
-          <br>
+          <a href="../">&laquo; Normal</a><br />
+          <a href="./page_tabs.js">page_tabs.js</a><br />
+          <a class="quiet" style="color: #4ABBE0;" href="./page_tabs_old.js">page_tabs_old.js</a><br />
+          <a href="./page_tabs.css">page_tabs.css</a><br />
+          <br />
           <code>&lt;page-tabs&gt;</code>
           <p>This version makes tabs linkable!</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, dolore aaaaaaaa eveniet excepturi veritatis iure sint perspiciatis ex optio. Mollitia aperiam laboriosam quisquam itaque excepturi minus, odio asperiores maxime placeat id?</p>
@@ -39,6 +40,7 @@
 
         <div class="tab-body" id="tab-2">
           <h3>Tab 2</h3>
+          <small>(<a href="./many.html">They don't nest well yet</a>)</small>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe repellat ducimus ullam, quod tenetur iste eligendi, explicabo inventore sunt ipsa at exercitationem soluta ipsum dolor illo aperiam? Facilis, odio inventore.</p>
         </div>
 
@@ -50,7 +52,7 @@
 
     </page-tabs>
 
-    <br>
+    <br />
     
     <page-tabs data-default-tab="jax" class="vertical" id="tadc-characters">
 
@@ -111,7 +113,7 @@
 
     </page-tabs>
 
-    <br>
+    <br />
 
     <page-tabs data-default-tab="aaaaaaa" class="horizontal">
 
@@ -212,7 +214,5 @@
       </div>
 
     </page-tabs>
-
-    <script src="./script.js" type="module"></script>
   </body>
 </html>
