@@ -33,6 +33,7 @@ a {
 .wavy-border {
   border-style: solid;
   background-clip: padding-box;
+  /* border-image: url("./img/border.png") 25% round; */
   border-image: url("./img/border.svg") 25% round;
   /* border-image: url("./img/border.svg") fill 25% round; */
 }
