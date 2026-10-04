@@ -1,5 +1,5 @@
 /* 
-  Last updated: 22/09/2026
+  Last updated: 04/10/2026
 
   Remember the tab_window.css file
 
@@ -55,19 +55,53 @@ class TabWindow extends HTMLElement {
   #initialized = false;
   #timeoutId = null;
   #activeTabId = null;
+  #currentTabIndex = null;
 
   tabList = null; tabHeaders = null; tabBodies = null;
+  tabs = [];
 
   getTab(tabId) {
-    const header = this.querySelector(`.tab-list .tab[${tabIdAttr}="${tabId}"]`);
-    const body = this.querySelector(`.tab-content .tab-body[${tabIdAttr}="${tabId}"]`);
+    const header = this.querySelector(`.tab-list > .tab[${tabIdAttr}="${tabId}"]`);
+    const body = this.querySelector(`.tab-content > .tab-body[${tabIdAttr}="${tabId}"]`);
 
     if (!body) {
-      throw new TypeError(`Tab button [id: "${tabId}"] does not have an associated tab`);
+      throw new TypeError(`Tab button [id: "${tabId}"] does not have an associated tab.\nCheck if you've set the default tab properly`);
     }
 
     return { header, body, id: tabId };
   }
+
+  #setTab(tab) { // expects { header, body, id: normalizedId }
+    // sets .active class and does all the aria stuff
+
+    // Remove .active from all .tab & .tab-body
+    for (const tabHeader of this.tabHeaders) {
+      tabHeader.ariaSelected = false;
+      tabHeader.classList.remove(activeClass);
+    }
+    for (const tabBody of this.tabBodies) tabBody.classList.remove(activeClass);
+    
+    // Add .active to selected .tab & .tab-body
+    tab.header.classList.add(activeClass);
+    tab.header.ariaSelected = true;
+    tab.body.classList.add(activeClass);
+  }
+
+  // activeTabIndex
+  
+  get activeTabIndex() {
+    return this.#currentTabIndex;
+  }
+
+  set activeTabIndex(tabIndex) {
+    this.#currentTabIndex = tabIndex;
+
+    const tabId = this.getTab( this.tabs[tabIndex] );
+
+    this.#setTab(tabId);
+  }
+
+  // active tab
 
   get activeTab() {
     return this.#activeTabId;
@@ -78,30 +112,51 @@ class TabWindow extends HTMLElement {
 
     const tab = this.getTab(tabId);
 
-    // Remove .active from all .tab & .tab-body
-    this.tabHeaders.forEach(tabHeader => {
-      tabHeader.ariaSelected = false;
-      tabHeader.classList.remove(activeClass);
-    });
+    this.#setTab(tab);
 
-    this.tabBodies.forEach(tabBody => tabBody.classList.remove(activeClass));
+    // set tab index
+    this.activeTabIndex = [...this.tabHeaders].indexOf(tab.header);
+  }
 
-    // Add .active to selected .tab & .tab-body
-    tab.header.classList.add(activeClass);
-    tab.header.ariaSelected = true;
-    tab.body.classList.add(activeClass);
+  // navigation methods
+
+  shiftTab(relativePos) {
+    if (relativePos == null) throw new TypeError("Missing `relativePos` argument");
+
+    this.activeTab = this.tabs.at(
+      (this.activeTabIndex + relativePos) % this.tabs.length
+    );
+
+    return this.activeTab;
+  }
+
+  nextTab() {
+    return this.shiftTab(1);
+  }
+
+  prevTab() {
+    return this.shiftTab(-1);
   }
 
   init() { // Main code
 
     this.tabList = this.querySelector(".tab-list");
-    this.tabHeaders = this.querySelectorAll(".tab-list .tab");
-    this.tabBodies = this.querySelectorAll(".tab-content .tab-body");
+    this.tabHeaders = this.querySelectorAll(".tab-list > .tab");
+    this.tabBodies = this.querySelectorAll(".tab-content > .tab-body");
+
+    { // collect tab IDs
+      for (const tabHeader of this.tabHeaders) this.tabs.push(tabHeader.dataset.tabId);
+
+      /* 
+        this only collects the IDs of tabs that are possible to access.
+        if there are extra tab bodies, their IDs will not be added to this.tabs
+      */
+    }
 
     { // Basic a11y, set roles
       this.tabList.role = "tablist";
-      this.tabHeaders.forEach(tabHeader => tabHeader.role = "tab");
-      this.tabBodies.forEach(tabBody => tabBody.role = "tabpanel");
+      for (const tabHeader of this.tabHeaders) tabHeader.role = "tab";
+      for (const tabBody of this.tabBodies) tabBody.role = "tabpanel";
     }
 
     { // Set default tab
@@ -122,7 +177,7 @@ class TabWindow extends HTMLElement {
 
       if (hrz && vrt){
         throw new TypeError(
-          `<${elemName}> can only contain .horizontal OR .vertical, but not both. Got: [${[ ...this.classList ]}]`
+          `<${elemName}> can only contain .horizontal OR .vertical, but not both.\nGot: [${[ ...this.classList ].join(", ")}]`
         );
       }
     }
@@ -143,7 +198,7 @@ class TabWindow extends HTMLElement {
 
       if (hash) {
         // any tabs with a targeted element?
-        const tab = this.querySelector(`.tab-content .tab-body:has(${hash})`);
+        const tab = this.querySelector(`.tab-content > .tab-body:has(${hash})`);
         
         if (tab) {
           this.activeTab = tab.dataset.tabId;
@@ -155,7 +210,7 @@ class TabWindow extends HTMLElement {
 
     // Main behaviour
 
-    this.tabHeaders.forEach(tabHeader => {
+    for (const tabHeader of this.tabHeaders) {
       tabHeader.ariaSelected ||= false;
 
       tabHeader.querySelector("button").addEventListener("click", () => {
@@ -163,7 +218,7 @@ class TabWindow extends HTMLElement {
 
         this.activeTab = selectedTabId;
       });
-    });
+    }
 
     
     this.#timeoutId = null; // put at end

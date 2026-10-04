@@ -34,6 +34,7 @@ code {
   border-radius: 4px;
   margin-inline: 0.2em;
   display: inline-block;
+  color: black;
 }
 
 #mytabs {

@@ -1,5 +1,5 @@
 /* 
-  Last updated: 22/09/2026
+  Last updated: 04/10/2026
 
   Remember the page_tabs.css file
 
@@ -60,8 +60,10 @@ class PageTabs extends HTMLElement {
   #initialized = false;
   #timeoutId = null;
   #activeTabId = null;
+  #currentTabIndex = null;
 
   tabList = null; tabHeaders = null; tabBodies = null;
+  tabs = [];
 
   #normalizeId(id) {
     return id.startsWith("#") ? id.substring(1) : id;
@@ -69,8 +71,8 @@ class PageTabs extends HTMLElement {
 
   getTab(id) {
     const normalizedId = this.#normalizeId(id);
-    const header = this.querySelector(`.tab-list .tab:has( a[href="#${ normalizedId }"] )`);
-    const body = this.querySelector(`.tab-content .tab-body#${ normalizedId }`);
+    const header = this.querySelector(`.tab-list > .tab:has( a[href="#${ normalizedId }"] )`);
+    const body = this.querySelector(`.tab-content > .tab-body#${ normalizedId }`);
 
     if (!body) {
       throw new TypeError(`Tab button [id: "${id}"] does not have an associated tab`);
@@ -79,21 +81,15 @@ class PageTabs extends HTMLElement {
     return { header, body, id: normalizedId };
   }
 
-  get activeTab() {
-    return this.#activeTabId;
-  }
-  
-  set activeTab(id) {
-    const tab = this.getTab(id);
-    this.#activeTabId = tab.id; // tab.id === normalizeId(id)
+  #setTab(tab) { // expects { header, body, id: normalizedId }
+    // sets .active class and does all the aria stuff
 
     // Remove .active from all .tab & .tab-body
-    this.tabHeaders.forEach(tabHeader => {
+    for (const tabHeader of this.tabHeaders) {
       tabHeader.ariaSelected = false;
       tabHeader.classList.remove(activeClass);
-    });
-
-    this.tabBodies.forEach(tabBody => tabBody.classList.remove(activeClass));
+    }
+    for (const tabBody of this.tabBodies) tabBody.classList.remove(activeClass);
 
     // Add .active to selected .tab & .tab-body
     tab.header.classList.add(activeClass);
@@ -101,16 +97,76 @@ class PageTabs extends HTMLElement {
     tab.body.classList.add(activeClass);
   }
 
+  // activeTabIndex
+
+  get activeTabIndex() {
+    return this.#currentTabIndex;
+  }
+
+  set activeTabIndex(tabIndex) {
+    this.#currentTabIndex = tabIndex;
+
+    const id = this.getTab( this.tabs[tabIndex] );
+
+    this.#setTab(id);
+  }
+
+  // activeTab
+
+  get activeTab() {
+    return this.#activeTabId;
+  }
+  
+  set activeTab(id) {
+    const tab = this.getTab(id);
+    
+    this.#activeTabId = tab.id; // tab.id === normalizeId(id)
+
+    this.#setTab(tab);
+
+    // set tab index
+    this.activeTabIndex = [...this.tabHeaders].indexOf(tab.header);
+  }
+
+  // navigation methods
+
+  shiftTab(relativePos) {
+    if (relativePos == null) throw new TypeError("Missing `relativePos` argument");
+    
+    this.activeTab = this.tabs.at(
+      (this.activeTabIndex + relativePos) % this.tabs.length
+    );
+
+    return this.activeTab;
+  }
+
+  nextTab() {
+    return this.shiftTab(1);
+  }
+
+  prevTab() {
+    return this.shiftTab(-1);
+  }
+
   init() { // Main code
 
     this.tabList = this.querySelector(".tab-list");
-    this.tabHeaders = this.querySelectorAll(".tab-list .tab");
-    this.tabBodies = this.querySelectorAll(".tab-content .tab-body");
+    this.tabHeaders = this.querySelectorAll(".tab-list > .tab");
+    this.tabBodies = this.querySelectorAll(".tab-content > .tab-body");
+
+    { // collect tab IDs
+      for (const tabHeader of this.tabHeaders) this.tabs.push(tabHeader.querySelector("a").hash);
+
+      /* 
+        this only collects the IDs of tabs that are possible to access.
+        if there are extra tab bodies, their IDs will not be added to this.tabs
+      */
+    }
 
     { // Basic a11y, set roles
       this.tabList.role = "tablist";
-      this.tabHeaders.forEach(tabHeader => tabHeader.role = "tab");
-      this.tabBodies.forEach(tabBody => tabBody.role = "tabpanel");
+      for (const tabHeader of this.tabHeaders) tabHeader.role = "tab";
+      for (const tabBody of this.tabBodies) tabBody.role = "tabpanel";
     }
 
     { // Set default tab
@@ -123,7 +179,7 @@ class PageTabs extends HTMLElement {
       }
 
       const locationHash = this.#normalizeId(location.hash);
-      const selectedTab = this.querySelector(`.tab-list .tab:has( a[href="#${ locationHash }"] )`);
+      const selectedTab = this.querySelector(`.tab-list > .tab:has( a[href="#${ locationHash }"] )`);
 
       if (selectedTab) { // If there is a selected tab (by the url #hash), select that tab's header thing
         this.activeTab = locationHash;
@@ -138,7 +194,7 @@ class PageTabs extends HTMLElement {
 
       if (hrz && vrt){
         throw new TypeError(
-          `<${elemName}> can only contain .horizontal OR .vertical, but not both. Got: [${[ ...pageTab.classList ]}]`
+          `<${elemName}> can only contain .horizontal OR .vertical, but not both.\nGot: [${[ ...this.classList ].join(", ")}]`
         );
       }
     }
@@ -159,7 +215,7 @@ class PageTabs extends HTMLElement {
 
       if (hash) {
         // any tabs with a targeted element?
-        const tab = this.querySelector(`.tab-content .tab-body:has(${hash})`);
+        const tab = this.querySelector(`.tab-content > .tab-body:has(${hash})`);
 
         if (tab) {
           this.activeTab = tab.id;
@@ -171,15 +227,14 @@ class PageTabs extends HTMLElement {
 
     // Main behaviour
 
-    this.tabHeaders.forEach(tabHeader => {
+    for (const tabHeader of this.tabHeaders) {
       tabHeader.ariaSelected ||= false;
 
       const tabHeaderAnchor = tabHeader.querySelector("a");
       const tabHeaderAnchorId = this.#normalizeId( tabHeaderAnchor.hash );
 
       tabHeaderAnchor.addEventListener("click", () => this.activeTab = tabHeaderAnchorId);
-    });
-
+    }
 
     this.#timeoutId = null; // put at end
   }
