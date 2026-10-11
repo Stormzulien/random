@@ -30,7 +30,7 @@ tab-window {
   --corner-radius: 6px;
 
   display: flex;
-  width: 500px;
+  max-width: 500px;
   height: 300px;
   overflow: hidden;
   color: var(--text-color);
