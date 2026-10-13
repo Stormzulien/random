@@ -1,5 +1,5 @@
 /* 
-  Last updated: 04/10/2026
+  Last updated: 13/10/2026
 
   Remember the page_tabs.css file
 
@@ -16,9 +16,13 @@
 
   Format:
 
-    <page-tabs data-default-tab="TAB_ID" class="(horizontal | vertical) +reverse">
+    <page-tabs
+      default-tab="TAB_ID"
+      tab-mode="(horizontal | vertical) +reverse" (e.g. tab-mode="vertical reverse", tab-mode="horizontal")
+      scroll-step="50" (OPTIONAL)
+    >
 
-      <ol class="tab-list" data-scroll-step="50 (OPTIONAL)">
+      <ol class="tab-list">
 
         <li class="tab">
           <a href="#TAB_ID">
@@ -49,6 +53,11 @@
 const elemName = "page-tabs"; // set the element's name e.g. <page-tabs>! remember to update the CSS
 
 const activeClass = "active";
+const tabWindowAttrNames = {
+  scrollStep: "scroll-step",
+  tabMode: "tab-mode",
+  defaultTab: "default-tab"
+};
 
 class PageTabs extends HTMLElement {
   // I'm completely new to this (web components). can probably be improved
@@ -64,6 +73,66 @@ class PageTabs extends HTMLElement {
 
   tabList = null; tabHeaders = null; tabBodies = null;
   tabs = [];
+
+  
+  // tab-mode attribute
+
+  static get observedAttributes() { return [ tabWindowAttrNames.tabMode ]; }
+
+  get tabMode() { return this.getAttribute( tabWindowAttrNames.tabMode ); }
+  set tabMode(value) { if (value) this.setAttribute( tabWindowAttrNames.tabMode, value ); }
+
+  attributeChangedCallback(name, prevValue, newValue) {
+    if (prevValue === newValue) return;
+
+    switch (name) {
+      case tabWindowAttrNames.tabMode: {
+        this.#switchTabMode(newValue);
+      } break;
+    
+      default: break;
+    }
+  }
+
+  #scrollHandler = (event) => {
+    event.preventDefault();
+    
+    const scrollStep = Number(this.scrollStep) || 50;
+    this.tabList.scrollLeft += event.deltaY > 0 ? scrollStep : -scrollStep;
+  }
+
+  #switchTabMode(tabMode) {
+    if (!this.tabList) return;
+
+    const modes = ["horizontal", "horizontal-reverse", "vertical", "vertical-reverse"];
+    if ( !modes.includes(tabMode) ) {
+      throw new TypeError(
+        // `[${tabModeAttr}] should only be one of:\n  [\n    "${modes.join('",\n    "')}"\n  ]\nGot: "${tabMode}"\n`
+        `[${tabWindowAttrNames.tabMode}] should only be one of: [${modes.join(", ")}].\nGot: "${tabMode}"\n`
+      );
+    }
+
+    if ( tabMode.includes("horizontal") ) {
+      this.tabList.addEventListener("wheel", this.#scrollHandler);
+    } else {
+      this.tabList.removeEventListener("wheel", this.#scrollHandler);
+    }
+  }
+
+
+  // default-tab attribute
+
+  get defaultTab() { return this.getAttribute( tabWindowAttrNames.defaultTab ); }
+  set defaultTab(value) { if (value) this.setAttribute( tabWindowAttrNames.defaultTab, value ); }
+
+
+  // scroll-step attribute
+
+  get scrollStep() { return this.getAttribute( tabWindowAttrNames.scrollStep ); }
+  set scrollStep(value) { if (value) this.setAttribute( tabWindowAttrNames.scrollStep, value ); }
+
+
+  // main stuff
 
   #normalizeId(id) {
     return id.startsWith("#") ? id.substring(1) : id;
@@ -170,7 +239,7 @@ class PageTabs extends HTMLElement {
     }
 
     { // Set default tab
-      const defaultTabId = this.#normalizeId( this.dataset.defaultTab );
+      const defaultTabId = this.#normalizeId( this.defaultTab );
 
       if (!defaultTabId) {
         throw new TypeError(
@@ -185,28 +254,6 @@ class PageTabs extends HTMLElement {
         this.activeTab = locationHash;
       } else { // and if there isn't, use the provided default
         this.activeTab = defaultTabId;
-      }
-    }
-
-    { // Throw error if both .horizontal and .vertical class included
-      const hrz = this.classList.contains("horizontal");
-      const vrt =  this.classList.contains("vertical");
-
-      if (hrz && vrt){
-        throw new TypeError(
-          `<${elemName}> can only contain .horizontal OR .vertical, but not both.\nGot: [${[ ...this.classList ].join(", ")}]`
-        );
-      }
-    }
-
-    { // Horizontal scrolling for the tab bar
-      if (this.classList.contains("horizontal")) {
-        const scrollStep = Number(this.tabList.dataset.scrollStep) || 50;
-
-        this.tabList.addEventListener("wheel", event => {
-          event.preventDefault();
-          this.tabList.scrollLeft += event.deltaY > 0 ? scrollStep : -scrollStep;
-        });
       }
     }
 
@@ -236,7 +283,9 @@ class PageTabs extends HTMLElement {
       tabHeaderAnchor.addEventListener("click", () => this.activeTab = tabHeaderAnchorId);
     }
 
-    this.#timeoutId = null; // put at end
+    this.#timeoutId = null; // put at end!
+
+    this.#switchTabMode(this.tabMode);
   }
 
   // other stuffs
@@ -244,9 +293,8 @@ class PageTabs extends HTMLElement {
   connectedCallback() {
     if (this.#initialized) return; // only set up once
 
-    this.#timeoutId = setTimeout(() => {
-      this.init();
-    }, 0); // this waits for it to load idk how. please trus me
+    this.#timeoutId = setTimeout(() => this.init(), 0);
+    // ^^ this waits for it to load idk how. please trus me
 
     this.#initialized = true;
   }

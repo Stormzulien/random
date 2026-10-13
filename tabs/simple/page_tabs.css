@@ -34,21 +34,13 @@ page-tabs {
   overflow: hidden;
   color: var(--text-color);
 
-  &.horizontal {
-    flex-direction: column;
+  /* Horizontal */
+  &[tab-mode="horizontal"] { flex-direction: column; }
+  &[tab-mode="horizontal-reverse"] { flex-direction: column-reverse; }
 
-    &.reverse {
-      flex-direction: column-reverse;
-    }
-  }
-
-  &.vertical {
-    flex-direction: row;
-
-    &.reverse {
-      flex-direction: row-reverse;
-    }
-  }
+  /* Vertical */
+  &[tab-mode="vertical"] { flex-direction: row; }
+  &[tab-mode="vertical-reverse"] { flex-direction: row-reverse; }
 
   &:not(:defined) {
     display: none;
@@ -66,11 +58,11 @@ page-tabs .tab-list {
   overflow: auto;
 }
 
-page-tabs.horizontal .tab-list::-webkit-scrollbar {
+page-tabs[tab-mode*="horizontal"] .tab-list::-webkit-scrollbar {
   display: none;
 }
 
-page-tabs.horizontal .tab-list {
+page-tabs[tab-mode*="horizontal"] .tab-list {
   flex-direction: row;
   border-top-left-radius: var(--corner-radius);
   border-top-right-radius: var(--corner-radius);
@@ -79,13 +71,13 @@ page-tabs.horizontal .tab-list {
   scrollbar-width: none;
 }
 
-page-tabs.horizontal.reverse .tab-list {
+page-tabs[tab-mode="horizontal-reverse"] .tab-list {
   border-radius: 0;
   border-bottom-left-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);
 }
 
-page-tabs.vertical .tab-list {
+page-tabs[tab-mode*="vertical"] .tab-list {
   flex-direction: column;
   width: 10em;
   border-top-left-radius: var(--corner-radius);
@@ -99,7 +91,7 @@ page-tabs.vertical .tab-list {
   }
 }
 
-page-tabs.vertical.reverse .tab-list {
+page-tabs[tab-mode="vertical-reverse"] .tab-list {
   border-radius: 0;
   border-top-right-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);
@@ -140,20 +132,20 @@ page-tabs .tab-list .tab > a {
   }
 }
 
-page-tabs.horizontal .tab-list .tab > a {
-  min-width: 5em;
+page-tabs[tab-mode*="horizontal"] .tab-list .tab > a {
+  min-width: 6em;
   max-width: 10em;
   border-top-left-radius: var(--corner-radius);
   border-top-right-radius: var(--corner-radius);
 }
 
-page-tabs.horizontal.reverse .tab-list .tab > a {
+page-tabs[tab-mode="horizontal-reverse"] .tab-list .tab > a {
   border-radius: 0;
   border-bottom-left-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);
 }
 
-page-tabs.vertical .tab-list .tab > a {
+page-tabs[tab-mode*="vertical"] .tab-list .tab > a {
   width: 100%;
   height: var(--tab-height);
   /* border-bottom: 1px solid grey; */
@@ -161,7 +153,7 @@ page-tabs.vertical .tab-list .tab > a {
   border-bottom-left-radius: var(--corner-radius);
 }
 
-page-tabs.vertical.reverse .tab-list .tab > a {
+page-tabs[tab-mode="vertical-reverse"] .tab-list .tab > a {
   border-radius: 0;
   border-top-right-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);
@@ -213,23 +205,23 @@ page-tabs .tab-list .tab.active > a {
   }
 }
 
-page-tabs.horizontal .tab-list .tab.active > a {
+page-tabs[tab-mode*="horizontal"] .tab-list .tab.active > a {
   border-top-left-radius: var(--corner-radius);
   border-top-right-radius: var(--corner-radius);
 }
 
-page-tabs.horizontal.reverse .tab-list .tab.active > a {
+page-tabs[tab-mode="horizontal-reverse"] .tab-list .tab.active > a {
   border-radius: 0;
   border-bottom-left-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);
 }
 
-page-tabs.vertical .tab-list .tab.active > a {
+page-tabs[tab-mode*="vertical"] .tab-list .tab.active > a {
   border-top-left-radius: var(--corner-radius);
   border-bottom-left-radius: var(--corner-radius);
 }
 
-page-tabs.vertical.reverse .tab-list .tab.active > a {
+page-tabs[tab-mode="vertical-reverse"] .tab-list .tab.active > a {
   border-radius: 0;
   border-top-right-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);
@@ -244,23 +236,23 @@ page-tabs .tab-content {
   border: 1px solid var(--border-color);
 }
 
-page-tabs.horizontal .tab-content {
+page-tabs[tab-mode*="horizontal"] .tab-content {
   border-bottom-left-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);
 }
 
-page-tabs.horizontal.reverse .tab-content {
+page-tabs[tab-mode="horizontal-reverse"] .tab-content {
   border-radius: 0;
   border-top-left-radius: var(--corner-radius);
   border-top-right-radius: var(--corner-radius);
 }
 
-page-tabs.vertical .tab-content {
+page-tabs[tab-mode*="vertical"] .tab-content {
   border-top-right-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);
 }
 
-page-tabs.vertical.reverse .tab-content {
+page-tabs[tab-mode="vertical-reverse"] .tab-content {
   border-radius: 0;
   border-top-left-radius: var(--corner-radius);
   border-bottom-left-radius: var(--corner-radius);
