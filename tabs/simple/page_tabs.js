@@ -175,9 +175,9 @@ class PageTabs extends HTMLElement {
   set activeTabIndex(tabIndex) {
     this.#currentTabIndex = tabIndex;
 
-    const id = this.getTab( this.tabs[tabIndex] );
+    const tab = this.getTab( this.tabs[tabIndex] );
 
-    this.#setTab(id);
+    this.#setTab(tab);
   }
 
   // activeTab

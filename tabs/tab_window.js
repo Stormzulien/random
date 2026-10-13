@@ -165,9 +165,9 @@ class TabWindow extends HTMLElement {
   set activeTabIndex(tabIndex) {
     this.#currentTabIndex = tabIndex;
 
-    const tabId = this.getTab( this.tabs[tabIndex] );
+    const tab = this.getTab( this.tabs[tabIndex] );
 
-    this.#setTab(tabId);
+    this.#setTab(tab);
   }
 
   // active tab
