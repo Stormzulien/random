@@ -106,13 +106,16 @@ class PageTabs extends HTMLElement {
 
     const modes = ["horizontal", "horizontal-reverse", "vertical", "vertical-reverse"];
     if ( !modes.includes(tabMode) ) {
-      throw new TypeError(
+      console.warn(
         // `[${tabModeAttr}] should only be one of:\n  [\n    "${modes.join('",\n    "')}"\n  ]\nGot: "${tabMode}"\n`
-        `[${tabWindowAttrNames.tabMode}] should only be one of: [${modes.join(", ")}].\nGot: "${tabMode}"\n`
+        `${elemName}[${tabWindowAttrNames.tabMode}] should only be one of: [${modes.join(", ")}].\nGot: "${tabMode}"\n`,
+        this
       );
+
+      this.tabMode = "horizontal";  // default/fallback
     }
 
-    if ( tabMode.includes("horizontal") ) {
+    if ( this.tabMode.includes("horizontal") ) {
       this.tabList.addEventListener("wheel", this.#scrollHandler);
     } else {
       this.tabList.removeEventListener("wheel", this.#scrollHandler);
@@ -239,21 +242,26 @@ class PageTabs extends HTMLElement {
     }
 
     { // Set default tab
-      const defaultTabId = this.#normalizeId( this.defaultTab );
+      let tabToSelectId;
 
-      if (!defaultTabId) {
-        throw new TypeError(
-          `<${elemName}> element must contain a data-default-tab attribute with a .tab-body's id. e.g. data-default-tab="tab-1"`
+      if (this.defaultTab) {
+        tabToSelectId = this.#normalizeId( this.defaultTab );
+      } else {
+        console.warn(
+          `<${elemName}> element should contain a default-tab attribute with a .tab-body's id. e.g. default-tab="tab-1"\n`,
+          this
         );
+
+        tabToSelectId = this.tabs[0]; // default/fallback
       }
 
-      const locationHash = this.#normalizeId(location.hash);
-      const selectedTab = this.querySelector(`.tab-list > .tab:has( a[href="#${ locationHash }"] )`);
-
+      const hash = this.#normalizeId(location.hash);
+      const selectedTab = this.querySelector(`.tab-list > .tab:has( a[href="#${ hash }"] )`);
+      
       if (selectedTab) { // If there is a selected tab (by the url #hash), select that tab's header thing
-        this.activeTab = locationHash;
+        this.activeTab = hash;
       } else { // and if there isn't, use the provided default
-        this.activeTab = defaultTabId;
+        this.activeTab = tabToSelectId;
       }
     }
 

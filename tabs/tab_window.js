@@ -101,13 +101,16 @@ class TabWindow extends HTMLElement {
 
     const modes = ["horizontal", "horizontal-reverse", "vertical", "vertical-reverse"];
     if ( !modes.includes(tabMode) ) {
-      throw new TypeError(
+      console.warn(
         // `[${tabModeAttr}] should only be one of:\n  [\n    "${modes.join('",\n    "')}"\n  ]\nGot: "${tabMode}"\n`
-        `[${tabWindowAttrNames.tabMode}] should only be one of: [${modes.join(", ")}].\nGot: "${tabMode}"\n`
+        `${elemName}[${tabWindowAttrNames.tabMode}] should only be one of: [${modes.join(", ")}].\nGot: "${tabMode}"\n`,
+        this
       );
+
+      this.tabMode = "horizontal"; // default/fallback
     }
 
-    if ( tabMode.includes("horizontal") ) {
+    if ( this.tabMode.includes("horizontal") ) {
       this.tabList.addEventListener("wheel", this.#scrollHandler);
     } else {
       this.tabList.removeEventListener("wheel", this.#scrollHandler);
@@ -248,12 +251,12 @@ class TabWindow extends HTMLElement {
 
     { // Set default tab
       if (!this.defaultTab) {
-        throw new TypeError(
-          `<${elemName}> element must contain a ${tabWindowAttrNames.defaultTab} attribute with a tabId. e.g. ${tabWindowAttrNames.defaultTab}="tab-1"\n`
+        console.warn(
+          `<${elemName}> element should contain a ${tabWindowAttrNames.defaultTab} attribute with a tabId. e.g. ${tabWindowAttrNames.defaultTab}="tab-1"\n`,
+          this
         );
-      }
-
-      this.activeTab = this.defaultTab;
+        this.activeTab = this.tabs[0]; // default/fallback
+      } else this.activeTab = this.defaultTab;  
     }
 
     { // handle #hashes
