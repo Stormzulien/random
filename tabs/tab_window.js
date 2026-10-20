@@ -17,7 +17,7 @@
       scroll-step="50" (OPTIONAL)
     >
     
-    <ol class="tab-list">
+      <ol class="tab-list">
 
         <li class="tab" tab-id="TAB_ID">
           <img src="ICON" class="tab-icon" /> (OPTIONAL)
