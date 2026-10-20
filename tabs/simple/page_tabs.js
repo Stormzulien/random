@@ -24,8 +24,8 @@
 
       <ol class="tab-list">
 
-        <li class="tab">
-          <a href="#TAB_ID">
+        <li>
+          <a class="tab" href="#TAB_ID">
             <img src="ICON" class="tab-icon" />  (OPTIONAL)
             <span class="tab-title">TAB TITLE</span>
           </a>
@@ -115,6 +115,8 @@ class PageTabs extends HTMLElement {
       this.tabMode = "horizontal";  // default/fallback
     }
 
+    this.tabList.ariaOrientation = this.tabMode;
+
     if ( this.tabMode.includes("horizontal") ) {
       this.tabList.addEventListener("wheel", this.#scrollHandler);
     } else {
@@ -143,7 +145,7 @@ class PageTabs extends HTMLElement {
 
   getTab(id) {
     const normalizedId = this.#normalizeId(id);
-    const header = this.querySelector(`.tab-list > .tab:has( a[href="#${ normalizedId }"] )`);
+    const header = this.querySelector(`.tab-list a[href="#${ normalizedId }"].tab`);
     const body = this.querySelector(`.tab-content > .tab-body#${ normalizedId }`);
 
     if (!body) {
@@ -159,6 +161,7 @@ class PageTabs extends HTMLElement {
     // Remove .active from all .tab & .tab-body
     for (const tabHeader of this.tabHeaders) {
       tabHeader.ariaSelected = false;
+      tabHeader.tabIndex = -1;
       tabHeader.classList.remove(activeClass);
     }
     for (const tabBody of this.tabBodies) tabBody.classList.remove(activeClass);
@@ -166,6 +169,7 @@ class PageTabs extends HTMLElement {
     // Add .active to selected .tab & .tab-body
     tab.header.classList.add(activeClass);
     tab.header.ariaSelected = true;
+    tab.header.tabIndex = 0;
     tab.body.classList.add(activeClass);
   }
 
@@ -223,22 +227,16 @@ class PageTabs extends HTMLElement {
   init() { // Main code
 
     this.tabList = this.querySelector(".tab-list");
-    this.tabHeaders = this.querySelectorAll(".tab-list > .tab");
+    this.tabHeaders = this.querySelectorAll(".tab-list a.tab");
     this.tabBodies = this.querySelectorAll(".tab-content > .tab-body");
 
     { // collect tab IDs
-      for (const tabHeader of this.tabHeaders) this.tabs.push(tabHeader.querySelector("a").hash);
+      for (const tabHeader of this.tabHeaders) this.tabs.push(tabHeader.hash);
 
       /* 
         this only collects the IDs of tabs that are possible to access.
         if there are extra tab bodies, their IDs will not be added to this.tabs
       */
-    }
-
-    { // Basic a11y, set roles
-      this.tabList.role = "tablist";
-      for (const tabHeader of this.tabHeaders) tabHeader.role = "tab";
-      for (const tabBody of this.tabBodies) tabBody.role = "tabpanel";
     }
 
     { // Set default tab
@@ -248,7 +246,7 @@ class PageTabs extends HTMLElement {
         tabToSelectId = this.#normalizeId( this.defaultTab );
       } else {
         console.warn(
-          `<${elemName}> element should contain a default-tab attribute with a .tab-body's id. e.g. default-tab="tab-1"\n`,
+          `<${elemName}> element should have a default-tab attribute with a .tab-body's id. e.g. default-tab="tab-1"\n`,
           this
         );
 
@@ -280,18 +278,26 @@ class PageTabs extends HTMLElement {
       }
     }
 
-    // Main behaviour
+    { // Main behaviour + (some) a11y
+      this.tabList.role = "tablist";
+      this.tabList.ariaOrientation = this.tabMode;
 
-    for (const tabHeader of this.tabHeaders) {
-      tabHeader.ariaSelected ||= false;
+      for (const tabHeader of this.tabHeaders) {
+        tabHeader.ariaSelected ||= false;
+        tabHeader.role = "tab";
 
-      const tabHeaderAnchor = tabHeader.querySelector("a");
-      const tabHeaderAnchorId = this.#normalizeId( tabHeaderAnchor.hash );
+        const tabHeaderId = this.#normalizeId( tabHeader.hash );
 
-      tabHeaderAnchor.addEventListener("click", () => this.activeTab = tabHeaderAnchorId);
+        tabHeader.addEventListener("click", () => this.activeTab = tabHeaderId);
+      }
+
+      for (const tabBody of this.tabBodies) {
+        tabBody.role = "tabpanel";
+        tabBody.tabIndex = 0;
+      }
     }
 
-    this.#timeoutId = null; // put at end!
+    this.#timeoutId = null; // put at end.
 
     this.#switchTabMode(this.tabMode);
   }

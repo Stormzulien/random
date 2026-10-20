@@ -103,9 +103,9 @@ page-tabs .tab-list .tab {
   display: flex;
 }
 
-/* .tab > a */
+/* a.tab */
 
-page-tabs .tab-list .tab > a {
+page-tabs .tab-list a.tab {
   background-color: var(--unselected-tab-dormant-color);
   border: 0px solid transparent;
   margin: 0;
@@ -132,20 +132,20 @@ page-tabs .tab-list .tab > a {
   }
 }
 
-page-tabs[tab-mode*="horizontal"] .tab-list .tab > a {
+page-tabs[tab-mode*="horizontal"] .tab-list a.tab {
   min-width: 6em;
   max-width: 10em;
   border-top-left-radius: var(--corner-radius);
   border-top-right-radius: var(--corner-radius);
 }
 
-page-tabs[tab-mode="horizontal-reverse"] .tab-list .tab > a {
+page-tabs[tab-mode="horizontal-reverse"] .tab-list a.tab {
   border-radius: 0;
   border-bottom-left-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);
 }
 
-page-tabs[tab-mode*="vertical"] .tab-list .tab > a {
+page-tabs[tab-mode*="vertical"] .tab-list a.tab {
   width: 100%;
   height: var(--tab-height);
   /* border-bottom: 1px solid grey; */
@@ -153,7 +153,7 @@ page-tabs[tab-mode*="vertical"] .tab-list .tab > a {
   border-bottom-left-radius: var(--corner-radius);
 }
 
-page-tabs[tab-mode="vertical-reverse"] .tab-list .tab > a {
+page-tabs[tab-mode="vertical-reverse"] .tab-list a.tab {
   border-radius: 0;
   border-top-right-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);
@@ -161,7 +161,7 @@ page-tabs[tab-mode="vertical-reverse"] .tab-list .tab > a {
 
 /* .tab-icon */
 
-page-tabs .tab-list .tab > a .tab-icon {
+page-tabs .tab-list a.tab .tab-icon {
   pointer-events: none;
   image-rendering: pixelated;
   height: 1.24em;
@@ -176,7 +176,7 @@ page-tabs .tab-list .tab > a .tab-icon {
 
 /* .tab-title */
 
-page-tabs .tab-list .tab > a .tab-title {
+page-tabs .tab-list a.tab .tab-title {
   font-size: 0.95em;
   margin-left: 0.6em;
   margin-right: 1em;
@@ -187,13 +187,13 @@ page-tabs .tab-list .tab > a .tab-title {
   color: var(--text-color);
 }
 
-page-tabs .tab-list .tab.active > a .tab-title {
+page-tabs .tab-list a.tab.active .tab-title {
   font-weight: bold;
 }
 
-/* ACTIVE TAB: .tab.active a */
+/* ACTIVE TAB: a.tab.active */
 
-page-tabs .tab-list .tab.active > a {
+page-tabs .tab-list a.tab.active {
   background-color: var(--selected-tab-dormant-color);
 
   &:hover {
@@ -205,23 +205,23 @@ page-tabs .tab-list .tab.active > a {
   }
 }
 
-page-tabs[tab-mode*="horizontal"] .tab-list .tab.active > a {
+page-tabs[tab-mode*="horizontal"] .tab-list a.tab.active {
   border-top-left-radius: var(--corner-radius);
   border-top-right-radius: var(--corner-radius);
 }
 
-page-tabs[tab-mode="horizontal-reverse"] .tab-list .tab.active > a {
+page-tabs[tab-mode="horizontal-reverse"] .tab-list a.tab.active {
   border-radius: 0;
   border-bottom-left-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);
 }
 
-page-tabs[tab-mode*="vertical"] .tab-list .tab.active > a {
+page-tabs[tab-mode*="vertical"] .tab-list a.tab.active {
   border-top-left-radius: var(--corner-radius);
   border-bottom-left-radius: var(--corner-radius);
 }
 
-page-tabs[tab-mode="vertical-reverse"] .tab-list .tab.active > a {
+page-tabs[tab-mode="vertical-reverse"] .tab-list a.tab.active {
   border-radius: 0;
   border-top-right-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);

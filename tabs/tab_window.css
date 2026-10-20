@@ -68,7 +68,6 @@ tab-window[tab-mode*="horizontal"] .tab-list {
   border-top-left-radius: var(--corner-radius);
   border-top-right-radius: var(--corner-radius);
   height: var(--tab-height);
-  -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
@@ -83,7 +82,6 @@ tab-window[tab-mode*="vertical"] .tab-list {
   width: 10em;
   border-top-left-radius: var(--corner-radius);
   border-bottom-left-radius: var(--corner-radius);
-  overflow: auto;
   scrollbar-width: none;
   height: 100%;
 
@@ -101,12 +99,6 @@ tab-window[tab-mode="vertical-reverse"] .tab-list {
 /* .tab */
 
 tab-window .tab-list .tab {
-  display: flex;
-}
-
-/* .tab > button */
-
-tab-window .tab-list .tab > button {
   background-color: var(--unselected-tab-dormant-color);
   border: 0px solid transparent;
   margin: 0;
@@ -116,6 +108,7 @@ tab-window .tab-list .tab > button {
   justify-content: left;
   height: 100%;
   font-size: 1em;
+  cursor: pointer;
   transition: background-color 0.1s;
 
   &:hover {
@@ -127,28 +120,29 @@ tab-window .tab-list .tab > button {
   }
 }
 
-tab-window[tab-mode*="horizontal"] .tab-list .tab > button {
+tab-window[tab-mode*="horizontal"] .tab-list .tab {
   min-width: 6em;
   max-width: 10em;
   border-top-left-radius: var(--corner-radius);
   border-top-right-radius: var(--corner-radius);
 }
 
-tab-window[tab-mode="horizontal-reverse"] .tab-list .tab > button {
+tab-window[tab-mode="horizontal-reverse"] .tab-list .tab {
   border-radius: 0;
   border-bottom-left-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);
 }
 
-tab-window[tab-mode*="vertical"] .tab-list .tab > button {
+tab-window[tab-mode*="vertical"] .tab-list .tab {
   width: 100%;
   height: var(--tab-height);
   /* border-bottom: 1px solid grey; */
   border-top-left-radius: var(--corner-radius);
   border-bottom-left-radius: var(--corner-radius);
+  min-height: var(--tab-height);
 }
 
-tab-window[tab-mode="vertical-reverse"] .tab-list .tab > button {
+tab-window[tab-mode="vertical-reverse"] .tab-list .tab {
   border-radius: 0;
   border-top-right-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);
@@ -156,7 +150,7 @@ tab-window[tab-mode="vertical-reverse"] .tab-list .tab > button {
 
 /* .tab-icon */
 
-tab-window .tab-list .tab > button .tab-icon {
+tab-window .tab-list .tab > .tab-icon {
   pointer-events: none;
   image-rendering: pixelated;
   height: 1.24em;
@@ -171,7 +165,7 @@ tab-window .tab-list .tab > button .tab-icon {
 
 /* .tab-title */
 
-tab-window .tab-list .tab > button .tab-title {
+tab-window .tab-list .tab > .tab-title {
   font-size: 0.95em;
   margin-left: 0.6em;
   margin-right: 1em;
@@ -182,13 +176,13 @@ tab-window .tab-list .tab > button .tab-title {
   color: var(--text-color);
 }
 
-tab-window .tab-list .tab.active > button .tab-title {
+tab-window .tab-list .tab.active > .tab-title {
   font-weight: bold;
 }
 
-/* ACTIVE TAB: .tab.active button */
+/* ACTIVE TAB: .tab.active */
 
-tab-window .tab-list .tab.active > button {
+tab-window .tab-list .tab.active {
   background-color: var(--selected-tab-dormant-color);
 
   &:hover {
@@ -200,23 +194,23 @@ tab-window .tab-list .tab.active > button {
   }
 }
 
-tab-window[tab-mode*="horizontal"] .tab-list .tab.active > button {
+tab-window[tab-mode*="horizontal"] .tab-list .tab.active {
   border-top-left-radius: var(--corner-radius);
   border-top-right-radius: var(--corner-radius);
 }
 
-tab-window[tab-mode="horizontal-reverse"] .tab-list .tab.active > button {
+tab-window[tab-mode="horizontal-reverse"] .tab-list .tab.active {
   border-radius: 0;
   border-bottom-left-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);
 }
 
-tab-window[tab-mode*="vertical"] .tab-list .tab.active > button {
+tab-window[tab-mode*="vertical"] .tab-list .tab.active {
   border-top-left-radius: var(--corner-radius);
   border-bottom-left-radius: var(--corner-radius);
 }
 
-tab-window[tab-mode="vertical-reverse"] .tab-list .tab.active > button {
+tab-window[tab-mode="vertical-reverse"] .tab-list .tab.active {
   border-radius: 0;
   border-top-right-radius: var(--corner-radius);
   border-bottom-right-radius: var(--corner-radius);

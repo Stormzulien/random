@@ -20,10 +20,8 @@
     <ol class="tab-list">
 
         <li class="tab" tab-id="TAB_ID">
-          <button>
-            <img src="ICON" class="tab-icon" /> (OPTIONAL)
-            <span class="tab-title">TAB TITLE</span>
-          </button>
+          <img src="ICON" class="tab-icon" /> (OPTIONAL)
+          <span class="tab-title">TAB TITLE</span>
         </li>
 
       </ol>
@@ -100,6 +98,7 @@ class TabWindow extends HTMLElement {
     if (!this.tabList) return;
 
     const modes = ["horizontal", "horizontal-reverse", "vertical", "vertical-reverse"];
+    // if invalid mode
     if ( !modes.includes(tabMode) ) {
       console.warn(
         // `[${tabModeAttr}] should only be one of:\n  [\n    "${modes.join('",\n    "')}"\n  ]\nGot: "${tabMode}"\n`
@@ -109,6 +108,8 @@ class TabWindow extends HTMLElement {
 
       this.tabMode = "horizontal"; // default/fallback
     }
+
+    this.tabList.ariaOrientation = this.tabMode;
 
     if ( this.tabMode.includes("horizontal") ) {
       this.tabList.addEventListener("wheel", this.#scrollHandler);
@@ -149,6 +150,7 @@ class TabWindow extends HTMLElement {
     // Remove .active from all .tab & .tab-body
     for (const tabHeader of this.tabHeaders) {
       tabHeader.ariaSelected = false;
+      tabHeader.tabIndex = -1;
       tabHeader.classList.remove(activeClass);
     }
     for (const tabBody of this.tabBodies) tabBody.classList.remove(activeClass);
@@ -156,6 +158,7 @@ class TabWindow extends HTMLElement {
     // Add .active to selected .tab & .tab-body
     tab.header.classList.add(activeClass);
     tab.header.ariaSelected = true;
+    tab.header.tabIndex = 0;
     tab.body.classList.add(activeClass);
   }
 
@@ -243,19 +246,13 @@ class TabWindow extends HTMLElement {
       */
     }
 
-    { // Basic a11y, set roles
-      this.tabList.role = "tablist";
-      for (const tabHeader of this.tabHeaders) tabHeader.role = "tab";
-      for (const tabBody of this.tabBodies) tabBody.role = "tabpanel";
-    }
-
     { // Set default tab
       if (!this.defaultTab) {
         console.warn(
-          `<${elemName}> element should contain a ${tabWindowAttrNames.defaultTab} attribute with a tabId. e.g. ${tabWindowAttrNames.defaultTab}="tab-1"\n`,
+          `<${elemName}> element should have a ${tabWindowAttrNames.defaultTab} attribute with a tabId. e.g. ${tabWindowAttrNames.defaultTab}="tab-1"\n`,
           this
         );
-        this.activeTab = this.tabs[0]; // default/fallback
+        this.activeTabIndex = 0; // default/fallback
       } else this.activeTab = this.defaultTab;  
     }
 
@@ -274,18 +271,57 @@ class TabWindow extends HTMLElement {
       }
     }
 
-    // Main behaviour
+    { // Main behaviour + a11y
+      this.tabList.role = "tablist";
+      this.tabList.ariaOrientation = this.tabMode;
 
-    for (const tabHeader of this.tabHeaders) {
-      tabHeader.ariaSelected ||= false;
+      for (const tabHeader of this.tabHeaders) {
+        tabHeader.ariaSelected ||= false;
+        tabHeader.role = "tab";
 
-      tabHeader.querySelector("button").addEventListener("click", () => {
-        const selectedTabId = tabHeader.tabId;
+        tabHeader.addEventListener("click", () => {
+          const selectedTabId = tabHeader.tabId;
 
-        this.activeTab = selectedTabId;
-      });
+          this.activeTab = selectedTabId;
+        });
+
+        // keyboard navs
+        tabHeader.addEventListener("keydown", e => {
+
+          switch (e.code) {
+            case "ArrowLeft": case "ArrowUp": {
+              e.preventDefault();
+              this.prevTab();
+            } break;
+
+            case "ArrowRight": case "ArrowDown": {
+              e.preventDefault();
+              this.nextTab();
+            } break;
+
+            case "Home": {
+              e.preventDefault();
+              this.activeTabIndex = 0;
+              // this.activeTab = this.tabs[0];
+            } break;
+
+            case "End": {
+              e.preventDefault();
+              this.activeTab = this.tabs[this.tabs.length - 1];
+            } break;
+          
+            default: break;
+          }
+
+          this.getTab(this.activeTab).header.focus();
+        });
+      }
+
+      for (const tabBody of this.tabBodies) {
+        tabBody.role = "tabpanel";
+        tabBody.tabIndex = 0;
+      }
     }
-
     
     this.#timeoutId = null; // put at end
 
